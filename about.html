@@ -89,18 +89,28 @@
   .band-ornament { color: rgba(201,169,110,0.3); font-size: 10px; letter-spacing: 12px; }
 
   .service-card {
-    display: grid; grid-template-columns: 320px 1fr; min-height: 300px;
+    display: grid; grid-template-columns: 380px 1fr; min-height: 460px;
     opacity: 0; transform: translateY(24px); transition: opacity 0.6s var(--ease-signature), transform 0.6s var(--ease-signature);
   }
   .service-card.visible { opacity: 1; transform: translateY(0); }
 
-  .service-left { padding: 52px 44px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
-  .service-left::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 20%, rgba(201,169,110,0.1) 0%, transparent 60%); pointer-events: none; }
+  .service-left { padding: 52px 44px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; }
+  .service-left::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 20%, rgba(201,169,110,0.1) 0%, transparent 60%); pointer-events: none; z-index: 1; }
   .card-1 .service-left { background: var(--card-tint-1); }
+
+  .curator-photo {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    filter: sepia(0.18) saturate(0.85) contrast(1.05) brightness(0.92);
+    opacity: 0.92;
+  }
+  .curator-photo-scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(61,28,46,0.15) 0%, rgba(61,28,46,0.25) 45%, rgba(61,28,46,0.92) 100%);
+  }
 
   .service-num { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 80px; color: rgba(201,169,110,0.12); line-height: 1; position: absolute; bottom: 20px; right: 24px; }
   .service-icon { font-size: 28px; margin-bottom: 20px; display: block; position: relative; z-index: 1; }
-  .service-title-wrap { position: relative; z-index: 1; }
+  .service-title-wrap { position: relative; z-index: 2; }
   .service-category { font-size: 8px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); font-weight: 300; margin-bottom: 10px; opacity: 0.7; }
   .service-name { font-family: var(--font-label); font-weight: 300; font-size: 18px; color: var(--champagne); letter-spacing: 2px; text-transform: uppercase; line-height: 1.3; }
   .service-tagline { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 14px; color: var(--mauve); margin-top: 8px; line-height: 1.4; }
@@ -163,8 +173,9 @@
     .intro-strip { grid-template-columns: 1fr; gap: 44px; padding: 60px 32px; }
     .intro-right { border-left: none; padding-left: 0; border-top: 1px solid var(--border-subtle); padding-top: 36px; }
     .services-header-band { padding: 40px 32px; }
-    .service-card { grid-template-columns: 1fr; }
-    .service-left, .service-right { padding: 40px 32px; }
+    .service-card { grid-template-columns: 1fr; min-height: 0; }
+    .service-left { padding: 40px 32px; min-height: 380px; }
+    .service-right { padding: 40px 32px; }
     .about-quote { padding: 70px 32px; }
   }
   @media (max-width: 520px) {
@@ -179,9 +190,11 @@
   <a href="index.html">Home</a>
   <span class="nav-sep">·</span>
   <a href="about.html" class="active">About</a>
+  <span class="nav-sep">·</span>
+  <a href="intake.html">Inquire</a>
 </nav>
 
-<a class="site-cta" href="mailto:curatedbyoccasions@gmail.com">Submit an inquiry</a>
+<a class="site-cta" href="intake.html">Submit an inquiry</a>
 
 <!-- ═══ HERO ═══ -->
 <section class="cover" id="hero">
@@ -239,8 +252,9 @@
 
   <div class="service-card card-1">
     <div class="service-left">
+      <img class="curator-photo" src="assets/tayo-matey.jpg" alt="Tayo Matey, Lead Event Architect at Curated by Occasions">
+      <div class="curator-photo-scrim"></div>
       <div class="service-title-wrap">
-        <span class="service-icon">✦</span>
         <p class="service-category">Lead Event Architect</p>
         <h3 class="service-name">Tayo<br>Matey</h3>
         <p class="service-tagline">Every detail, considered.</p>
@@ -278,9 +292,9 @@
     <span class="back-ornament">✦ · ✦ · ✦</span>
     <h2 class="back-title">Let's start planning<br>your moment.</h2>
     <p class="back-body">Every occasion deserves to feel extraordinary. Whether you know exactly what you want or you're just starting to dream — we'd love to hear from you.</p>
-    <a class="cta-button" href="mailto:curatedbyoccasions@gmail.com">Submit an inquiry</a>
+    <a class="cta-button" href="intake.html">Submit an inquiry</a>
     <div class="back-contact">
-      <p class="contact-item">Submit an inquiry via our website</p>
+      <a href="intake.html" class="contact-item" style="text-decoration:none;color:inherit;">Submit an inquiry via our website</a>
       <p class="contact-item">DM us on Instagram &nbsp;@curatedbyoccasions</p>
       <a href="mailto:curatedbyoccasions@gmail.com" class="contact-item" style="text-decoration:none;color:inherit;">curatedbyoccasions@gmail.com</a>
     </div>
