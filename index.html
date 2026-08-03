@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curated by Occasions — Our Services</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&family=Cinzel:wght@300;400&display=swap');
+
+  :root{
+    --plum:#3D1C2E; --plum-mid:#5a2d46; --champagne:#F5ECD7; --blush:#E8C4B8;
+    --mauve:#C4879A; --dusty:#A05C6B; --gold:#C9A96E; --sage:#9BAF9B;
+    --cream:#FAF6F0; --charcoal:#2C2221;
+    --card-tint-1:#3D1C2E; --card-tint-2:#2e1525; --card-tint-3:#4a2035; --card-tint-4:#351826; --card-tint-5:#3d2232;
+    --text-muted:rgba(44,34,33,.65); --text-muted-on-dark:rgba(245,236,215,.45);
+    --border-subtle:rgba(160,92,107,.12); --border-gold:rgba(201,169,110,.3);
+    --tag-bg:rgba(160,92,107,.08); --tag-border:rgba(160,92,107,.15);
+    --font-display:'Cormorant Garamond',serif;
+    --font-label:'Cinzel',serif;
+    --font-body:'Jost',sans-serif;
+    --radius-pill:20px;
+    --shadow-soft:0 12px 32px rgba(61,28,46,.12);
+    --ease-signature:cubic-bezier(.22,1,.36,1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--plum); font-family: var(--font-body); color: var(--charcoal); min-height: 100vh; }
+
+  /* ═══ COVER ═══ */
+  .cover {
+    min-height: 100vh; background: var(--plum); position: relative; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 60px 40px; text-align: center;
+  }
+  .cover::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(196,135,154,0.22) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 70%, rgba(201,169,110,0.14) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(61,28,46,0.4) 0%, transparent 70%);
+  }
+  .corner { position: absolute; width: 60px; height: 60px; }
+  .corner.tl { top: 32px; left: 32px; border-top: 1px solid var(--border-gold); border-left: 1px solid var(--border-gold); }
+  .corner.tr { top: 32px; right: 32px; border-top: 1px solid var(--border-gold); border-right: 1px solid var(--border-gold); }
+  .corner.bl { bottom: 32px; left: 32px; border-bottom: 1px solid var(--border-gold); border-left: 1px solid var(--border-gold); }
+  .corner.br { bottom: 32px; right: 32px; border-bottom: 1px solid var(--border-gold); border-right: 1px solid var(--border-gold); }
+
+  .cover-inner { position: relative; z-index: 1; max-width: 600px; opacity: 0; transform: translateY(16px); animation: fadeUp 1s var(--ease-signature) forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  .cover-emblem { margin-bottom: 32px; position: relative; z-index: 1; }
+  .cover-eyebrow {
+    font-weight: 200; font-size: 9px; letter-spacing: 6px; text-transform: uppercase;
+    color: rgba(201,169,110,0.55); margin-bottom: 36px; display: flex; align-items: center; justify-content: center; gap: 14px;
+  }
+  .cover-eyebrow::before, .cover-eyebrow::after { content: ''; width: 36px; height: 1px; background: rgba(201,169,110,0.3); }
+  .cover-brand {
+    font-family: var(--font-label); font-weight: 300; font-size: clamp(28px, 5vw, 52px);
+    color: var(--champagne); letter-spacing: 5px; text-transform: uppercase; line-height: 1; margin-bottom: 6px;
+  }
+  .cover-by {
+    font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: clamp(18px, 3vw, 30px);
+    color: var(--mauve); letter-spacing: 3px; display: block; margin-bottom: 28px;
+  }
+  .cover-ornament { color: var(--gold); font-size: 11px; letter-spacing: 16px; opacity: 0.5; margin-bottom: 28px; display: block; }
+  .cover-headline {
+    font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: clamp(36px, 6vw, 64px);
+    color: var(--champagne); line-height: 1.05; margin-bottom: 24px; letter-spacing: 1px;
+  }
+  .cover-sub { font-weight: 200; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted-on-dark); margin-bottom: 52px; }
+  .cover-scroll {
+    font-size: 9px; letter-spacing: 4px; text-transform: uppercase; font-weight: 300;
+    color: rgba(201,169,110,0.35); display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
+    transition: color 0.2s; background: none; border: none;
+  }
+  .cover-scroll:hover { color: rgba(201,169,110,0.6); }
+  .cover-scroll::after { content: '↓'; font-size: 14px; }
+
+  /* ═══ INTRO / STATS ═══ */
+  .intro-strip { background: var(--cream); padding: 72px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .intro-label { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); font-weight: 300; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .intro-label::before { content: '✦'; font-size: 8px; color: var(--gold); }
+  .intro-heading { font-family: var(--font-display); font-weight: 300; font-size: 38px; color: var(--plum); line-height: 1.15; margin-bottom: 22px; }
+  .intro-heading em { font-style: italic; color: var(--dusty); }
+  .intro-body { font-size: 14px; font-weight: 300; line-height: 1.85; color: var(--text-muted); }
+  .intro-right { border-left: 1px solid var(--border-subtle); padding-left: 60px; }
+  .intro-stats { display: flex; flex-direction: column; gap: 32px; }
+  .stat-number { font-family: var(--font-display); font-style: italic; font-size: 48px; font-weight: 300; color: var(--dusty); line-height: 1; margin-bottom: 4px; }
+  .stat-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: rgba(44,34,33,0.4); font-weight: 300; }
+  .stat-divider { height: 1px; background: rgba(160,92,107,0.1); }
+
+  /* ═══ SERVICES ═══ */
+  .services-wrap { background: var(--cream); padding: 0 0 80px; }
+  .services-header-band { background: var(--plum); padding: 52px 60px; display: flex; align-items: center; justify-content: space-between; }
+  .services-header-band h2 { font-family: var(--font-label); font-weight: 300; font-size: 11px; letter-spacing: 6px; text-transform: uppercase; color: var(--text-muted-on-dark); }
+  .band-title { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 38px; color: var(--champagne); letter-spacing: 1px; }
+  .band-ornament { color: rgba(201,169,110,0.3); font-size: 10px; letter-spacing: 12px; }
+
+  .service-card {
+    display: grid; grid-template-columns: 320px 1fr; min-height: 300px;
+    border-bottom: 1px solid rgba(160,92,107,0.1);
+    opacity: 0; transform: translateY(24px); transition: opacity 0.6s var(--ease-signature), transform 0.6s var(--ease-signature);
+  }
+  .service-card.visible { opacity: 1; transform: translateY(0); }
+  .service-card:last-child { border-bottom: none; }
+  .service-card.reverse { direction: rtl; }
+  .service-card.reverse > * { direction: ltr; }
+
+  .service-left { padding: 52px 44px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+  .service-left::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 20%, rgba(201,169,110,0.1) 0%, transparent 60%); pointer-events: none; }
+  .card-1 .service-left { background: var(--card-tint-1); }
+  .card-2 .service-left { background: var(--card-tint-2); }
+  .card-3 .service-left { background: var(--card-tint-3); }
+  .card-4 .service-left { background: var(--card-tint-4); }
+  .card-5 .service-left { background: var(--card-tint-5); }
+
+  .service-num { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 80px; color: rgba(201,169,110,0.12); line-height: 1; position: absolute; bottom: 20px; right: 24px; }
+  .service-icon { font-size: 28px; margin-bottom: 20px; display: block; position: relative; z-index: 1; }
+  .service-title-wrap { position: relative; z-index: 1; }
+  .service-category { font-size: 8px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); font-weight: 300; margin-bottom: 10px; opacity: 0.7; }
+  .service-name { font-family: var(--font-label); font-weight: 300; font-size: 18px; color: var(--champagne); letter-spacing: 2px; text-transform: uppercase; line-height: 1.3; }
+  .service-tagline { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 14px; color: var(--mauve); margin-top: 8px; line-height: 1.4; }
+
+  .service-right { background: var(--cream); padding: 52px 56px; display: flex; flex-direction: column; justify-content: center; }
+  .service-desc-head { font-family: var(--font-display); font-weight: 400; font-size: 22px; color: var(--plum); line-height: 1.3; margin-bottom: 18px; }
+  .service-desc-head em { font-style: italic; color: var(--dusty); }
+  .service-desc-body { font-size: 13.5px; font-weight: 300; line-height: 1.85; color: var(--text-muted); margin-bottom: 28px; }
+  .service-includes { border-top: 1px solid var(--border-subtle); padding-top: 22px; }
+  .includes-label { font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: var(--dusty); font-weight: 400; margin-bottom: 12px; opacity: 0.7; }
+  .includes-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+  .includes-list li { font-size: 10px; font-weight: 300; letter-spacing: 1px; color: var(--plum); background: var(--tag-bg); border: 1px solid var(--tag-border); padding: 5px 12px; border-radius: var(--radius-pill); }
+
+  /* ═══ HOW IT WORKS ═══ */
+  .how-section { background: var(--plum); padding: 90px 60px; position: relative; overflow: hidden; }
+  .how-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(201,169,110,0.08) 0%, transparent 60%); pointer-events: none; }
+  .how-inner { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+  .how-header { text-align: center; margin-bottom: 60px; }
+  .how-eyebrow { font-size: 9px; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-bottom: 16px; }
+  .how-title { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 34px; color: var(--champagne); }
+  .how-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+  .how-step-num { font-family: var(--font-display); font-style: italic; font-size: 32px; color: var(--gold); opacity: 0.6; margin-bottom: 14px; }
+  .how-step-title { font-family: var(--font-label); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--champagne); margin-bottom: 12px; }
+  .how-step-body { font-size: 12.5px; font-weight: 300; line-height: 1.7; color: var(--text-muted-on-dark); }
+
+  /* ═══ BACK COVER / CTA ═══ */
+  .back-cover { background: var(--cream); padding: 100px 40px; text-align: center; }
+  .back-inner { max-width: 560px; margin: 0 auto; }
+  .back-ornament { color: var(--gold); font-size: 11px; letter-spacing: 16px; opacity: 0.6; display: block; margin-bottom: 28px; }
+  .back-title { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: clamp(30px, 4vw, 44px); color: var(--plum); line-height: 1.1; margin-bottom: 22px; }
+  .back-body { font-size: 13.5px; font-weight: 300; line-height: 1.85; color: var(--text-muted); margin-bottom: 40px; }
+  .back-contact { display: flex; flex-direction: column; gap: 12px; margin-bottom: 48px; }
+  .contact-item { font-size: 11px; letter-spacing: 1px; color: var(--dusty); font-weight: 300; }
+  .back-brand { font-family: var(--font-label); font-size: 13px; letter-spacing: 3px; color: var(--plum); text-transform: uppercase; }
+
+  .cta-button {
+    display: inline-block; font-family: var(--font-body); font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 400; color: var(--plum); background: none; border: 1px solid var(--border-gold);
+    padding: 14px 32px; margin-bottom: 40px; cursor: pointer; transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+  }
+  .cta-button:hover { background: var(--plum); color: var(--champagne); }
+
+  @media (max-width: 860px) {
+    .intro-strip { grid-template-columns: 1fr; gap: 44px; padding: 60px 32px; }
+    .intro-right { border-left: none; padding-left: 0; border-top: 1px solid var(--border-subtle); padding-top: 36px; }
+    .services-header-band { padding: 40px 32px; }
+    .service-card, .service-card.reverse { grid-template-columns: 1fr; direction: ltr; }
+    .service-left, .service-right { padding: 40px 32px; }
+    .how-steps { grid-template-columns: 1fr 1fr; }
+    .how-section { padding: 70px 32px; }
+  }
+  @media (max-width: 520px) {
+    .how-steps { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ COVER ═══ -->
+<section class="cover" id="cover">
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <svg class="cover-emblem" width="72" height="72" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="47" stroke="#C9A96E" stroke-width="0.7" opacity="0.4"/>
+    <circle cx="50" cy="50" r="37" stroke="#C9A96E" stroke-width="0.4" opacity="0.2"/>
+    <path d="M50 8 C54 24 54 24 50 40 C46 24 46 24 50 8Z" fill="#C9A96E" opacity="0.8"/>
+    <path d="M50 60 C54 76 54 76 50 92 C46 76 46 76 50 60Z" fill="#C9A96E" opacity="0.8"/>
+    <path d="M8 50 C24 46 24 46 40 50 C24 54 24 54 8 50Z" fill="#C9A96E" opacity="0.8"/>
+    <path d="M60 50 C76 46 76 46 92 50 C76 54 76 54 60 50Z" fill="#C9A96E" opacity="0.8"/>
+    <path d="M50 50 C42 42 38 30 26 24 C30 36 36 42 50 50Z" fill="#C4879A" opacity="0.5"/>
+    <path d="M50 50 C58 58 62 70 74 76 C70 64 64 58 50 50Z" fill="#C4879A" opacity="0.5"/>
+    <path d="M50 50 C58 42 70 38 76 26 C64 30 58 36 50 50Z" fill="#C4879A" opacity="0.5"/>
+    <path d="M50 50 C42 58 30 62 24 74 C36 70 42 64 50 50Z" fill="#C4879A" opacity="0.5"/>
+    <circle cx="50" cy="50" r="6" fill="#C9A96E" opacity="0.9"/>
+    <circle cx="50" cy="50" r="3" fill="#3D1C2E"/>
+    <circle cx="50" cy="50" r="1.3" fill="#C9A96E" opacity="0.7"/>
+  </svg>
+
+  <div class="cover-inner">
+    <p class="cover-eyebrow">Services Menu</p>
+    <p class="cover-brand">Curated</p>
+    <span class="cover-by">by Occasions</span>
+    <span class="cover-ornament">✦ · ✦ · ✦</span>
+    <h1 class="cover-headline">Every moment,<br>made for you.</h1>
+    <p class="cover-sub">Personalized Events Company &nbsp;·&nbsp; Intimate Event Designs</p>
+    <button class="cover-scroll" onclick="document.getElementById('intro').scrollIntoView({behavior:'smooth'})">Explore our services</button>
+  </div>
+</section>
+
+<!-- ═══ INTRO / PHILOSOPHY ═══ -->
+<section class="intro-strip" id="intro">
+  <div class="intro-left">
+    <p class="intro-label">Our philosophy</p>
+    <h2 class="intro-heading">We don't just plan events.<br>We <em>curate experiences.</em></h2>
+    <p class="intro-body">At Curated by Occasions, every service is built around one belief: that your celebration should feel as unique as the person it's for. We offer five distinct services — from full event curation to on-the-day facilitation — so you can choose exactly the level of support that feels right for your occasion.<br><br>No packages. No templates. Just intentional, personalized design — created for you.</p>
+  </div>
+  <div class="intro-right">
+    <div class="intro-stats">
+      <div class="stat-item">
+        <p class="stat-number">5</p>
+        <p class="stat-label">Distinct service offerings</p>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <p class="stat-number">100%</p>
+        <p class="stat-label">Personalized to you</p>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <p class="stat-number">One</p>
+        <p class="stat-label">Dedicated curator — every time</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<div class="services-wrap" id="services">
+
+  <div class="services-header-band">
+    <div>
+      <h2>What we offer</h2>
+      <p class="band-title">Our Services</p>
+    </div>
+    <span class="band-ornament">✦ · ✦ · ✦</span>
+  </div>
+
+  <!-- SERVICE 1 — Event Architect -->
+  <div class="service-card card-1">
+    <div class="service-left">
+      <div class="service-title-wrap">
+        <span class="service-icon">✦</span>
+        <p class="service-category">Creative Direction</p>
+        <h3 class="service-name">Event<br>Architect</h3>
+        <p class="service-tagline">Your vision, fully realized.</p>
+      </div>
+      <span class="service-num">I</span>
+    </div>
+    <div class="service-right">
+      <p class="service-desc-head">Before a single detail is decided,<br>there is a <em>vision — and that starts here.</em></p>
+      <p class="service-desc-body">As your Event Architect, I work with you to build your event concept from the ground up — translating your ideas, personality, and aesthetic into a cohesive creative direction that feels entirely, unmistakably you.<br><br>From defining the mood and colour palette to curating outfit direction, styling references, and a realistic budget framework, I lay the complete creative foundation for your occasion. Every decision we make together ensures that when the day arrives, every element tells the same beautiful story.</p>
+      <div class="service-includes">
+        <p class="includes-label">What's included</p>
+        <ul class="includes-list">
+          <li>Creative concept development</li>
+          <li>Mood board &amp; aesthetic direction</li>
+          <li>Colour palette curation</li>
+          <li>Outfit &amp; styling guidance</li>
+          <li>Budget framework &amp; planning</li>
+          <li>Vision consultation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICE 2 — Event Design & Décor -->
+  <div class="service-card card-2 reverse">
+    <div class="service-left">
+      <div class="service-title-wrap">
+        <span class="service-icon">🌸</span>
+        <p class="service-category">Design</p>
+        <h3 class="service-name">Event Design<br>&amp; Décor</h3>
+        <p class="service-tagline">Transforming spaces into experiences.</p>
+      </div>
+      <span class="service-num">II</span>
+    </div>
+    <div class="service-right">
+      <p class="service-desc-head">The atmosphere of your event should feel like it was <em>designed for this exact moment.</em></p>
+      <p class="service-desc-body">Because it was. As your Event Designer, I develop the full visual concept for your occasion — the colour palette, floral direction, furniture, lighting, backdrops, tablescapes, and every detail that makes a space feel extraordinary.<br><br>Whether you have a clear vision or simply a feeling you want to evoke, I translate it into a cohesive, beautiful aesthetic that tells your story without you having to say a word. I handle sourcing, styling, and setup so the space is ready to take your breath away.</p>
+      <div class="service-includes">
+        <p class="includes-label">What's included</p>
+        <ul class="includes-list">
+          <li>Mood board &amp; concept design</li>
+          <li>Colour palette curation</li>
+          <li>Floral direction</li>
+          <li>Backdrop &amp; prop styling</li>
+          <li>Sourcing &amp; setup</li>
+          <li>Full teardown</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICE 3 — Event Concierge -->
+  <div class="service-card card-3">
+    <div class="service-left">
+      <div class="service-title-wrap">
+        <span class="service-icon">🤍</span>
+        <p class="service-category">Support</p>
+        <h3 class="service-name">Event Concierge<br>Services</h3>
+        <p class="service-tagline">The behind-the-scenes hands.</p>
+      </div>
+      <span class="service-num">III</span>
+    </div>
+    <div class="service-right">
+      <p class="service-desc-head">The success of any great event lives in the details — <em>and the details require running around.</em></p>
+      <p class="service-desc-body">That's where I come in. As your Event Concierge, I handle all the errands, pickups, drop-offs, and last-minute tasks leading up to and on the day of your event, so you never have to break a sweat.<br><br>From collecting items and picking up custom orders to setting up goodie bags and making sure everything is exactly where it needs to be — consider it handled. You stay present and enjoy the moment. I keep everything moving behind the scenes.</p>
+      <div class="service-includes">
+        <p class="includes-label">What's included</p>
+        <ul class="includes-list">
+          <li>Pre-event errands &amp; pickups</li>
+          <li>Day-of logistics support</li>
+          <li>Supply &amp; prop collection</li>
+          <li>Last-minute tasks</li>
+          <li>Setup assistance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICE 4 — Event Day Facilitator -->
+  <div class="service-card card-4 reverse">
+    <div class="service-left">
+      <div class="service-title-wrap">
+        <span class="service-icon">👑</span>
+        <p class="service-category">On-Site</p>
+        <h3 class="service-name">Event Day<br>Facilitator</h3>
+        <p class="service-tagline">Your calm in the celebration.</p>
+      </div>
+      <span class="service-num">IV</span>
+    </div>
+    <div class="service-right">
+      <p class="service-desc-head">Every great event needs someone who <em>knows the plan, reads the room,</em> and keeps the energy exactly where it needs to be.</p>
+      <p class="service-desc-body">As your Event Day Facilitator, I am your on-site presence from start to finish — hosting the event, welcoming and interacting with guests, guiding the flow of the evening, and making real-time decisions so nothing falls through the cracks.<br><br>This is more than logistics. I bring warmth, professionalism, and genuine care to every interaction — keeping the energy alive, the timeline on track, and the atmosphere exactly as you imagined. You get to be a guest at your own event. I make sure it runs beautifully.</p>
+      <div class="service-includes">
+        <p class="includes-label">What's included</p>
+        <ul class="includes-list">
+          <li>Guest welcome &amp; hosting</li>
+          <li>Event flow management</li>
+          <li>Real-time problem solving</li>
+          <li>Timeline execution</li>
+          <li>Full presence start to finish</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICE 5 — Photoshoot Assistance -->
+  <div class="service-card card-5">
+    <div class="service-left">
+      <div class="service-title-wrap">
+        <span class="service-icon">📸</span>
+        <p class="service-category">Creative</p>
+        <h3 class="service-name">Photoshoot<br>Assistance</h3>
+        <p class="service-tagline">Helping you create images worth remembering.</p>
+      </div>
+      <span class="service-num">V</span>
+    </div>
+    <div class="service-right">
+      <p class="service-desc-head">A great photoshoot doesn't happen by accident — <em>it's planned, styled, and directed with purpose.</em></p>
+      <p class="service-desc-body">As your Photoshoot Assistant, I work with you before the shoot to develop creative concepts, plan the shot list, and ensure every visual element is cohesive and intentional. On the day of, I am on site to coordinate styling, manage the flow of the shoot, and make sure the final images reflect exactly the story you want to tell.<br><br>Whether it's a birthday content shoot, a proposal re-creation, a brand session, or a styled event capture — I bring the creative direction and the on-the-ground support to make it all come together beautifully.</p>
+      <div class="service-includes">
+        <p class="includes-label">What's included</p>
+        <ul class="includes-list">
+          <li>Pre-shoot concept development</li>
+          <li>Shot list planning</li>
+          <li>Styling direction</li>
+          <li>On-site coordination</li>
+          <li>Mood board creation</li>
+          <li>Photographer liaison</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="how-section" id="process">
+  <div class="how-inner">
+    <div class="how-header">
+      <p class="how-eyebrow">The process</p>
+      <h2 class="how-title">How we work together</h2>
+    </div>
+    <div class="how-steps">
+      <div class="how-step">
+        <p class="how-step-num">1</p>
+        <p class="how-step-title">Submit your inquiry</p>
+        <p class="how-step-body">Fill out our client intake form with your event details, vision, and the services you're interested in.</p>
+      </div>
+      <div class="how-step">
+        <p class="how-step-num">2</p>
+        <p class="how-step-title">Consultation call</p>
+        <p class="how-step-body">We'll schedule a complimentary call to get to know each other, answer your questions, and align on the vision.</p>
+      </div>
+      <div class="how-step">
+        <p class="how-step-num">3</p>
+        <p class="how-step-title">Custom proposal</p>
+        <p class="how-step-body">You receive a personalized proposal outlining your selected services, timeline, and investment.</p>
+      </div>
+      <div class="how-step">
+        <p class="how-step-num">4</p>
+        <p class="how-step-title">Let's create</p>
+        <p class="how-step-body">We get to work — and you get to look forward to an occasion that's been designed entirely for you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BACK COVER / CTA ═══ -->
+<section class="back-cover" id="contact">
+  <div class="back-inner">
+    <span class="back-ornament">✦ · ✦ · ✦</span>
+    <h2 class="back-title">Ready to curate<br>your moment?</h2>
+    <p class="back-body">Every occasion deserves to feel extraordinary. Whether you know exactly what you want or you're just starting to dream — we'd love to hear from you.</p>
+    <a class="cta-button" href="mailto:curatedbyoccasions@gmail.com">Submit an inquiry</a>
+    <div class="back-contact">
+      <p class="contact-item">Submit an inquiry via our website</p>
+      <p class="contact-item">DM us on Instagram &nbsp;@curatedbyoccasions</p>
+      <a href="mailto:curatedbyoccasions@gmail.com" class="contact-item" style="text-decoration:none;color:inherit;">curatedbyoccasions@gmail.com</a>
+    </div>
+    <p class="back-brand">Curated by Occasions ✦</p>
+  </div>
+</section>
+
+<script>
+  // Scroll-triggered fade-in for service cards
+  var cards = document.querySelectorAll('.service-card');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  cards.forEach(function(c) { observer.observe(c); });
+</script>
+
+</body>
+</html>
