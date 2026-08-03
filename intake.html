@@ -3,389 +3,1122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Client Intake — Curated by Occasions</title>
+<title>Curated by Occasions — Client Intake Form</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&family=Cinzel:wght@300;400&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&family=Cinzel:wght@300;400&display=swap');
-
-  :root{
-    --plum:#3D1C2E; --plum-mid:#5a2d46; --champagne:#F5ECD7; --blush:#E8C4B8;
-    --mauve:#C4879A; --dusty:#A05C6B; --gold:#C9A96E; --sage:#9BAF9B;
-    --cream:#FAF6F0; --charcoal:#2C2221;
-    --text-muted:rgba(44,34,33,.65); --text-muted-on-dark:rgba(245,236,215,.45);
-    --border-subtle:rgba(160,92,107,.12); --border-gold:rgba(201,169,110,.3);
-    --tag-bg:rgba(160,92,107,.08); --tag-border:rgba(160,92,107,.15);
-    --font-display:'Cormorant Garamond',serif;
-    --font-label:'Cinzel',serif;
-    --font-body:'Jost',sans-serif;
-    --radius-pill:20px;
-    --ease-signature:cubic-bezier(.22,1,.36,1);
-  }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --champagne: #F5ECD7;
+    --blush:     #E8C4B8;
+    --mauve:     #C4879A;
+    --dusty:     #A05C6B;
+    --plum:      #3D1C2E;
+    --plum-mid:  #5a2d46;
+    --sage:      #9BAF9B;
+    --gold:      #C9A96E;
+    --cream:     #FAF6F0;
+    --cream-dark:#F0E8DC;
+    --charcoal:  #2C2221;
+  }
+
   html { scroll-behavior: smooth; }
-  body { background: var(--plum); font-family: var(--font-body); color: var(--charcoal); min-height: 100vh; }
 
-  /* ═══ HERO ═══ */
-  .cover {
-    min-height: 70vh; background: var(--plum); position: relative; overflow: hidden;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    padding: 60px 40px; text-align: center;
+  body {
+    background: var(--cream);
+    font-family: 'Jost', sans-serif;
+    color: var(--charcoal);
+    min-height: 100vh;
   }
-  .cover::before {
-    content: ''; position: absolute; inset: 0;
+
+  /* ── SITE TOPBAR ── */
+  .site-topbar {
+    background: var(--plum-mid);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+  .site-topbar a { color: var(--champagne); text-decoration: none; opacity: 0.55; transition: opacity 0.2s; }
+  .site-topbar a:hover, .site-topbar a.active { opacity: 1; }
+  .site-topbar .nav-sep { color: rgba(201,169,110,0.4); }
+
+  /* ── HERO HEADER ── */
+  .hero {
+    background: var(--plum);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse at 20% 30%, rgba(196,135,154,0.22) 0%, transparent 55%),
-      radial-gradient(ellipse at 80% 70%, rgba(201,169,110,0.14) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 50%, rgba(61,28,46,0.4) 0%, transparent 70%);
+      radial-gradient(ellipse at 15% 80%, rgba(196,135,154,0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 20%, rgba(201,169,110,0.15) 0%, transparent 50%);
   }
-  .corner { position: absolute; width: 60px; height: 60px; }
-  .corner.tl { top: 32px; left: 32px; border-top: 1px solid var(--border-gold); border-left: 1px solid var(--border-gold); }
-  .corner.tr { top: 32px; right: 32px; border-top: 1px solid var(--border-gold); border-right: 1px solid var(--border-gold); }
-  .corner.bl { bottom: 32px; left: 32px; border-bottom: 1px solid var(--border-gold); border-left: 1px solid var(--border-gold); }
-  .corner.br { bottom: 32px; right: 32px; border-bottom: 1px solid var(--border-gold); border-right: 1px solid var(--border-gold); }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 380px;
+  }
+  .hero-left {
+    padding: 64px 56px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 9px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .hero-brand {
+    font-family: 'Cinzel', serif;
+    font-weight: 300;
+    font-size: clamp(22px, 3.5vw, 38px);
+    color: var(--champagne);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .hero-brand-by {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(14px, 2vw, 22px);
+    color: var(--mauve);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 20px;
+  }
+  .hero-tagline {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(245,236,215,0.4);
+    margin-bottom: 32px;
+  }
+  .hero-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.7;
+    color: rgba(245,236,215,0.65);
+    max-width: 380px;
+  }
 
-  .cover-inner { position: relative; z-index: 1; max-width: 620px; opacity: 0; transform: translateY(16px); animation: fadeUp 1s var(--ease-signature) forwards; }
-  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-
-  .cover-eyebrow {
-    font-weight: 200; font-size: 9px; letter-spacing: 6px; text-transform: uppercase;
-    color: rgba(201,169,110,0.55); margin-bottom: 36px; display: flex; align-items: center; justify-content: center; gap: 14px;
+  /* hero right — decorative emblem panel */
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-left: 1px solid rgba(201,169,110,0.1);
   }
-  .cover-eyebrow::before, .cover-eyebrow::after { content: ''; width: 36px; height: 1px; background: rgba(201,169,110,0.3); }
-  .cover-ornament { color: var(--gold); font-size: 11px; letter-spacing: 16px; opacity: 0.5; margin-bottom: 28px; display: block; }
-  .cover-headline {
-    font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: clamp(32px, 5vw, 54px);
-    color: var(--champagne); line-height: 1.1; margin-bottom: 24px; letter-spacing: 1px;
+  .hero-emblem-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    opacity: 0.9;
   }
-  .cover-sub { font-weight: 200; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted-on-dark); }
-
-  /* ═══ FORM SECTION ═══ */
-  .form-section { background: var(--cream); padding: 90px 40px 110px; }
-  .form-wrap { max-width: 640px; margin: 0 auto; }
-  .form-intro-label { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); font-weight: 300; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
-  .form-intro-label::before { content: '✦'; font-size: 8px; color: var(--gold); }
-  .form-heading { font-family: var(--font-display); font-weight: 300; font-size: 32px; color: var(--plum); line-height: 1.2; margin-bottom: 18px; }
-  .form-heading em { font-style: italic; color: var(--dusty); }
-  .form-intro-body { font-size: 13.5px; font-weight: 300; line-height: 1.85; color: var(--text-muted); margin-bottom: 64px; max-width: 520px; }
-
-  fieldset { border: none; margin: 0 0 48px; padding: 0; }
-  .fieldset-label {
-    font-family: var(--font-label); font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--dusty); font-weight: 400; margin-bottom: 24px; padding-bottom: 14px;
-    border-bottom: 1px solid var(--border-subtle);
+  .hero-emblem-sub {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 8px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(201,169,110,0.4);
   }
 
-  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 34px; }
-  .field { display: flex; flex-direction: column; }
-  .field.full { grid-column: 1 / -1; }
-  .field label {
-    font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 400;
-    color: rgba(44,34,33,0.45); margin-bottom: 10px;
+  /* ── PROGRESS BAR ── */
+  .progress-bar-wrap {
+    background: var(--plum);
+    padding: 0;
+    border-bottom: 1px solid rgba(201,169,110,0.1);
   }
-  .field .optional { text-transform: none; letter-spacing: 0; font-style: italic; font-family: var(--font-display); opacity: 0.9; }
+  .progress-steps {
+    display: flex;
+    align-items: stretch;
+  }
+  .step-tab {
+    flex: 1;
+    padding: 16px 12px;
+    text-align: center;
+    cursor: pointer;
+    border-right: 1px solid rgba(201,169,110,0.08);
+    transition: background 0.3s;
+    position: relative;
+  }
+  .step-tab:last-child { border-right: none; }
+  .step-tab.active { background: rgba(201,169,110,0.1); }
+  .step-tab.completed { background: rgba(155,175,155,0.08); }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 10px;
+    color: rgba(201,169,110,0.4);
+    display: block;
+    margin-bottom: 3px;
+  }
+  .step-tab.active .step-num { color: var(--gold); }
+  .step-tab.completed .step-num { color: var(--sage); }
+  .step-name {
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: rgba(245,236,215,0.3);
+  }
+  .step-tab.active .step-name { color: rgba(245,236,215,0.75); }
+  .step-tab.completed .step-name { color: rgba(155,175,155,0.7); }
+  .step-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+  }
 
-  .field input[type="text"],
-  .field input[type="email"],
-  .field input[type="tel"],
-  .field input[type="number"],
-  .field input[type="date"],
-  .field select,
-  .field textarea {
-    font-family: var(--font-body); font-weight: 300; font-size: 14px; color: var(--charcoal);
-    background: transparent; border: none; border-bottom: 1px solid var(--border-subtle);
-    padding: 8px 2px 12px; outline: none; transition: border-color 0.2s; width: 100%;
-    appearance: none; -webkit-appearance: none; border-radius: 0;
-  }
-  .field select { cursor: pointer; }
-  .field textarea { resize: vertical; min-height: 110px; line-height: 1.7; }
-  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--dusty); }
-  .field input::placeholder, .field textarea::placeholder { color: rgba(44,34,33,0.28); font-weight: 300; }
-
-  /* custom select arrow, kept minimal */
-  .field select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23A05C6B'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 4px center; padding-right: 20px;
+  /* ── FORM BODY ── */
+  .form-body {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
   }
 
-  /* service chips */
-  .service-chips { display: flex; flex-wrap: wrap; gap: 10px; }
-  .service-chip { position: relative; }
-  .service-chip input { position: absolute; opacity: 0; width: 100%; height: 100%; cursor: pointer; margin: 0; }
-  .service-chip label {
-    display: flex; align-items: center; gap: 8px; cursor: pointer;
-    font-size: 11px; font-weight: 300; letter-spacing: 0.5px; color: var(--plum);
-    background: var(--tag-bg); border: 1px solid var(--tag-border);
-    padding: 10px 18px; border-radius: var(--radius-pill); transition: background 0.2s, border-color 0.2s, color 0.2s;
-    text-transform: none; margin: 0;
+  /* ── SECTION BLOCK ── */
+  .form-section {
+    display: none;
+    animation: slideIn 0.4s ease both;
   }
-  .service-chip .chip-icon { font-size: 13px; }
-  .service-chip input:checked + label {
-    background: var(--plum); border-color: var(--plum); color: var(--champagne);
+  .form-section.active { display: block; }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
-  .service-chip input:focus-visible + label { outline: 1px solid var(--dusty); outline-offset: 2px; }
-  .field-error { font-size: 11px; color: var(--dusty); margin-top: 12px; display: none; font-style: italic; font-family: var(--font-display); }
+
+  .section-header {
+    margin-bottom: 40px;
+  }
+  .section-eyebrow {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 300;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(201,169,110,0.3), transparent);
+  }
+  .section-title-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 36px;
+    color: var(--plum);
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .section-title-text em {
+    font-style: italic;
+    color: var(--dusty);
+  }
+  .section-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(44,34,33,0.55);
+    line-height: 1.7;
+  }
+
+  /* ── FIELDS ── */
+  .field-group {
+    margin-bottom: 28px;
+  }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--dusty);
+    margin-bottom: 9px;
+  }
+  .label-optional {
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: none;
+    font-style: italic;
+    color: rgba(160,92,107,0.5);
+    font-weight: 300;
+    margin-left: 6px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  input[type="number"],
+  textarea,
+  select {
+    width: 100%;
+    background: #fff;
+    border: 1px solid rgba(160,92,107,0.18);
+    border-radius: 3px;
+    padding: 14px 16px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    -webkit-appearance: none;
+  }
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--dusty);
+    box-shadow: 0 0 0 3px rgba(160,92,107,0.08);
+  }
+  input:invalid.touched, select:invalid.touched { border-color: var(--dusty); }
+  input::placeholder, textarea::placeholder { color: rgba(44,34,33,0.3); font-weight: 200; }
+
+  textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A05C6B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+
+  /* ── RADIO / CHECKBOX ── */
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .options-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .options-grid.cols-1 { grid-template-columns: 1fr; }
+
+  .option-pill {
+    position: relative;
+  }
+  .option-pill input {
+    position: absolute;
+    opacity: 0;
+    width: 0; height: 0;
+  }
+  .option-pill label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 16px;
+    background: #fff;
+    border: 1px solid rgba(160,92,107,0.15);
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: none;
+    color: var(--charcoal);
+    font-weight: 300;
+    transition: all 0.2s;
+    margin-bottom: 0;
+  }
+  .option-pill label::before {
+    content: '';
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(160,92,107,0.3);
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .option-pill.checkbox label::before { border-radius: 2px; }
+  .option-pill input:checked + label {
+    background: rgba(160,92,107,0.06);
+    border-color: var(--dusty);
+    color: var(--plum);
+  }
+  .option-pill input:checked + label::before {
+    background: var(--dusty);
+    border-color: var(--dusty);
+  }
+
+  /* ── BUDGET SLIDER ── */
+  .budget-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* ── DIVIDER ── */
+  .field-divider {
+    height: 1px;
+    background: linear-gradient(to right, rgba(160,92,107,0.15), transparent);
+    margin: 36px 0;
+  }
+
+  /* ── ERROR TEXT ── */
+  .field-error {
+    font-size: 11px;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--dusty);
+    margin-top: 10px;
+    display: none;
+  }
   .field-error.visible { display: block; }
 
-  .submit-row { margin-top: 8px; }
-  .submit-button {
-    display: inline-block; font-family: var(--font-body); font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-    font-weight: 400; color: var(--plum); background: none; border: 1px solid var(--border-gold);
-    padding: 16px 40px; cursor: pointer; transition: background 0.2s, color 0.2s;
+  /* ── NAV BUTTONS ── */
+  .form-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 52px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(160,92,107,0.1);
   }
-  .submit-button:hover { background: var(--plum); color: var(--champagne); }
-  .submit-note { font-size: 11px; font-weight: 300; color: var(--text-muted); margin-top: 18px; line-height: 1.7; max-width: 460px; }
-  .submit-confirm {
-    display: none; margin-top: 22px; font-family: var(--font-display); font-style: italic; font-size: 15px; color: var(--dusty);
+  .btn-back {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(160,92,107,0.5);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
   }
-  .submit-confirm.visible { display: block; }
+  .btn-back:hover { color: var(--dusty); }
+  .btn-back::before { content: '←'; }
 
-  /* ═══ FOOTER ═══ */
-  .site-footer { background: var(--cream); text-align: center; padding: 0 40px 60px; }
-  .footer-ornament { color: var(--gold); font-size: 10px; letter-spacing: 12px; opacity: 0.5; display: block; margin-bottom: 18px; }
-  .footer-brand { font-family: var(--font-label); font-size: 12px; letter-spacing: 3px; color: var(--plum); text-transform: uppercase; }
-
-  /* ═══ SITE NAV (fixed, top left) ═══ */
-  .site-nav {
-    position: fixed; top: 130px; left: 32px; z-index: 500; display: flex; align-items: center; gap: 14px;
-    font-family: var(--font-body); font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
-    background: var(--plum); border: 1px solid var(--border-gold); padding: 12px 20px;
+  .btn-next {
+    font-family: 'Cinzel', serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--champagne);
+    background: var(--plum);
+    border: none;
+    cursor: pointer;
+    padding: 16px 36px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.25s;
   }
-  .site-nav a { color: var(--champagne); text-decoration: none; opacity: 0.55; transition: opacity 0.2s; }
-  .site-nav a:hover, .site-nav a.active { opacity: 1; }
-  .site-nav .nav-sep { color: var(--border-gold); opacity: 0.6; }
+  .btn-next:hover { background: var(--plum-mid); }
+  .btn-next::after { content: '→'; font-family: 'Jost', sans-serif; font-size: 14px; }
 
-  @media (max-width: 720px) {
-    .field-row { grid-template-columns: 1fr; gap: 0; }
-    .form-section { padding: 70px 24px 90px; }
+  .btn-submit {
+    font-family: 'Cinzel', serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--plum);
+    background: var(--gold);
+    border: none;
+    cursor: pointer;
+    padding: 16px 40px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: opacity 0.25s;
   }
-  @media (max-width: 520px) {
-    .site-nav { top: 100px; left: 16px; padding: 10px 14px; gap: 10px; font-size: 8px; letter-spacing: 2px; }
+  .btn-submit:hover { opacity: 0.88; }
+  .btn-submit::after { content: '✦'; font-size: 10px; }
+
+  .step-counter {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: rgba(44,34,33,0.35);
+  }
+
+  /* ── SUCCESS STATE ── */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 80px 40px;
+  }
+  .success-screen.active { display: block; }
+  .success-emblem { margin: 0 auto 32px; }
+  .success-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--plum);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .success-sub {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(44,34,33,0.55);
+    line-height: 1.8;
+    max-width: 420px;
+    margin: 0 auto 32px;
+  }
+  .success-brand {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--dusty);
+    opacity: 0.6;
+  }
+
+  @media (max-width: 640px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 44px 28px 36px; }
+    .field-row { grid-template-columns: 1fr; }
+    .options-grid { grid-template-columns: 1fr; }
+    .options-grid.cols-3 { grid-template-columns: 1fr 1fr; }
+    .form-body { padding: 44px 24px 80px; }
+    .progress-steps { flex-wrap: wrap; }
+    .step-tab { flex: none; width: 50%; }
   }
 </style>
 </head>
 <body>
 
-<nav class="site-nav">
+<!-- SITE NAV -->
+<div class="site-topbar">
   <a href="index.html">Home</a>
   <span class="nav-sep">·</span>
   <a href="about.html">About</a>
   <span class="nav-sep">·</span>
   <a href="intake.html" class="active">Inquire</a>
-</nav>
+</div>
 
-<!-- ═══ HERO ═══ -->
-<section class="cover">
-  <div class="corner tl"></div>
-  <div class="corner tr"></div>
-  <div class="corner bl"></div>
-  <div class="corner br"></div>
-
-  <div class="cover-inner">
-    <p class="cover-eyebrow">Client Intake</p>
-    <span class="cover-ornament">✦ · ✦ · ✦</span>
-    <h1 class="cover-headline">Tell us about<br>your vision.</h1>
-    <p class="cover-sub">Every detail starts with your story</p>
-  </div>
-</section>
-
-<!-- ═══ FORM ═══ -->
-<section class="form-section">
-  <div class="form-wrap">
-    <p class="form-intro-label">Before we begin</p>
-    <h2 class="form-heading">A few details to<br><em>get us started.</em></h2>
-    <p class="form-intro-body">There's no wrong way to answer these. Share what you know, skip what you don't, and we'll follow up personally within 48 hours to talk through the rest. No packages, no templates — just a conversation to start building something personalized to you.</p>
-
-    <form id="intake-form" novalidate>
-
-      <fieldset>
-        <p class="fieldset-label">Your details</p>
-        <div class="field-row">
-          <div class="field">
-            <label for="fullName">Full name</label>
-            <input type="text" id="fullName" name="fullName" required placeholder="Jane Doe">
-          </div>
-          <div class="field">
-            <label for="email">Email address</label>
-            <input type="email" id="email" name="email" required placeholder="jane@email.com">
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="phone">Phone number <span class="optional">(optional)</span></label>
-            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
-          </div>
-          <div class="field">
-            <label for="referral">How did you hear about us? <span class="optional">(optional)</span></label>
-            <select id="referral" name="referral">
-              <option value="">Select one</option>
-              <option value="Instagram">Instagram</option>
-              <option value="Referral">Referral from a friend</option>
-              <option value="Google / web search">Google / web search</option>
-              <option value="Past client">Past client</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <p class="fieldset-label">Your event</p>
-        <div class="field-row">
-          <div class="field">
-            <label for="eventType">Event type</label>
-            <input type="text" id="eventType" name="eventType" required placeholder="Wedding, birthday, proposal…">
-          </div>
-          <div class="field">
-            <label for="eventDate">Event date <span class="optional">(or a rough month)</span></label>
-            <input type="text" id="eventDate" name="eventDate" placeholder="e.g. June 2027 or TBD">
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="guestCount">Estimated guest count <span class="optional">(optional)</span></label>
-            <input type="number" id="guestCount" name="guestCount" min="1" placeholder="e.g. 40">
-          </div>
-          <div class="field">
-            <label for="location">Event location / venue <span class="optional">(optional)</span></label>
-            <input type="text" id="location" name="location" placeholder="City or venue name">
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field full">
-            <label for="budget">Estimated budget <span class="optional">(optional, helps us plan)</span></label>
-            <select id="budget" name="budget">
-              <option value="">Prefer to discuss</option>
-              <option value="Under $2,000">Under $2,000</option>
-              <option value="$2,000–$5,000">$2,000–$5,000</option>
-              <option value="$5,000–$10,000">$5,000–$10,000</option>
-              <option value="$10,000+">$10,000+</option>
-            </select>
-          </div>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <p class="fieldset-label">Services you're interested in</p>
-        <div class="service-chips" id="service-chips">
-          <div class="service-chip">
-            <input type="checkbox" id="svc-architect" name="services" value="Event Architect">
-            <label for="svc-architect"><span class="chip-icon">✦</span>Event Architect</label>
-          </div>
-          <div class="service-chip">
-            <input type="checkbox" id="svc-decor" name="services" value="Event Design & Décor">
-            <label for="svc-decor"><span class="chip-icon">🌸</span>Event Design &amp; Décor</label>
-          </div>
-          <div class="service-chip">
-            <input type="checkbox" id="svc-concierge" name="services" value="Event Concierge">
-            <label for="svc-concierge"><span class="chip-icon">🤍</span>Event Concierge</label>
-          </div>
-          <div class="service-chip">
-            <input type="checkbox" id="svc-facilitator" name="services" value="Event Day Facilitator">
-            <label for="svc-facilitator"><span class="chip-icon">👑</span>Event Day Facilitator</label>
-          </div>
-          <div class="service-chip">
-            <input type="checkbox" id="svc-photo" name="services" value="Photoshoot Assistance">
-            <label for="svc-photo"><span class="chip-icon">📸</span>Photoshoot Assistance</label>
-          </div>
-        </div>
-        <p class="field-error" id="service-error">Please select at least one service.</p>
-      </fieldset>
-
-      <fieldset>
-        <p class="fieldset-label">Your vision</p>
-        <div class="field">
-          <label for="vision">Tell us about your vision <span class="optional">(optional, but we'd love to hear it)</span></label>
-          <textarea id="vision" name="vision" placeholder="Describe the feeling, aesthetic, or story you want your event to tell…"></textarea>
-        </div>
-      </fieldset>
-
-      <div class="submit-row">
-        <button type="submit" class="submit-button">Submit inquiry</button>
-        <p class="submit-note">Submitting opens your email app with these answers ready to send to curatedbyoccasions@gmail.com — just hit send from there. Prefer not to? DM us on Instagram @curatedbyoccasions instead.</p>
-        <p class="submit-confirm" id="submit-confirm">Thank you — your email is ready. We can't wait to hear more. ✦</p>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <p class="hero-eyebrow">New Client Inquiry</p>
+      <h1 class="hero-brand">
+        Curated
+        <span class="hero-brand-by">by Occasions</span>
+      </h1>
+      <p class="hero-tagline">Personalized Events Company</p>
+      <p class="hero-desc">Tell us about your vision and we'll get to work curating something unforgettable — just for you.</p>
+      <p style="font-family:'Jost',sans-serif;font-weight:200;font-size:10px;letter-spacing:1px;color:rgba(245,236,215,0.38);margin-top:16px;line-height:1.9;">
+        Prefer to reach out directly?<br>
+        <a href="mailto:curatedbyoccasions@gmail.com" style="color:var(--gold);opacity:0.7;text-decoration:none;letter-spacing:0.5px;">✦ &nbsp;curatedbyoccasions@gmail.com</a>
+      </p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-emblem-wrap">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="47" stroke="#C9A96E" stroke-width="0.7" opacity="0.45"/>
+          <circle cx="50" cy="50" r="38" stroke="#C9A96E" stroke-width="0.4" opacity="0.25"/>
+          <circle cx="50" cy="50" r="28" stroke="#C9A96E" stroke-width="0.3" opacity="0.13"/>
+          <path d="M50 8 C54 24 54 24 50 40 C46 24 46 24 50 8Z" fill="#C9A96E" opacity="0.82"/>
+          <path d="M50 60 C54 76 54 76 50 92 C46 76 46 76 50 60Z" fill="#C9A96E" opacity="0.82"/>
+          <path d="M8 50 C24 46 24 46 40 50 C24 54 24 54 8 50Z" fill="#C9A96E" opacity="0.82"/>
+          <path d="M60 50 C76 46 76 46 92 50 C76 54 76 54 60 50Z" fill="#C9A96E" opacity="0.82"/>
+          <path d="M50 50 C42 42 38 30 26 24 C30 36 36 42 50 50Z" fill="#C4879A" opacity="0.55"/>
+          <path d="M50 50 C58 58 62 70 74 76 C70 64 64 58 50 50Z" fill="#C4879A" opacity="0.55"/>
+          <path d="M50 50 C58 42 70 38 76 26 C64 30 58 36 50 50Z" fill="#C4879A" opacity="0.55"/>
+          <path d="M50 50 C42 58 30 62 24 74 C36 70 42 64 50 50Z" fill="#C4879A" opacity="0.55"/>
+          <polygon points="50,3 52,6 50,9 48,6" fill="#C9A96E" opacity="0.6"/>
+          <polygon points="50,91 52,94 50,97 48,94" fill="#C9A96E" opacity="0.6"/>
+          <polygon points="3,50 6,52 9,50 6,48" fill="#C9A96E" opacity="0.6"/>
+          <polygon points="91,50 94,52 97,50 94,48" fill="#C9A96E" opacity="0.6"/>
+          <circle cx="50" cy="50" r="6" fill="#C9A96E" opacity="0.9"/>
+          <circle cx="50" cy="50" r="3.2" fill="#3D1C2E"/>
+          <circle cx="50" cy="50" r="1.4" fill="#C9A96E" opacity="0.7"/>
+        </svg>
+        <p class="hero-emblem-sub">Intimate Event Designs</p>
       </div>
-    </form>
+    </div>
   </div>
-</section>
 
-<!-- ═══ FOOTER ═══ -->
-<footer class="site-footer">
-  <span class="footer-ornament">✦ · ✦ · ✦</span>
-  <p class="footer-brand">Curated by Occasions</p>
-</footer>
+  <!-- PROGRESS -->
+  <div class="progress-bar-wrap">
+    <div class="progress-steps">
+      <div class="step-tab active" onclick="goToStep(1)">
+        <span class="step-num">I</span>
+        <span class="step-name">About You</span>
+      </div>
+      <div class="step-tab" onclick="goToStep(2)">
+        <span class="step-num">II</span>
+        <span class="step-name">Your Event</span>
+      </div>
+      <div class="step-tab" onclick="goToStep(3)">
+        <span class="step-num">III</span>
+        <span class="step-name">Vision & Style</span>
+      </div>
+      <div class="step-tab" onclick="goToStep(4)">
+        <span class="step-num">IV</span>
+        <span class="step-name">Services & Budget</span>
+      </div>
+      <div class="step-tab" onclick="goToStep(5)">
+        <span class="step-num">V</span>
+        <span class="step-name">Final Details</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- FORM BODY -->
+<div class="form-body">
+
+  <!-- STEP 1: ABOUT YOU -->
+  <div class="form-section active" id="step-1">
+    <div class="section-header">
+      <p class="section-eyebrow">Step One</p>
+      <h2 class="section-title-text">Let's start with <em>you</em></h2>
+      <p class="section-desc">We'd love to know a little about you before we dive in.</p>
+    </div>
+
+    <div class="field-row field-group">
+      <div>
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" placeholder="Your first name" required>
+      </div>
+      <div>
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" placeholder="Your last name" required>
+      </div>
+    </div>
+
+    <div class="field-row field-group">
+      <div>
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="hello@email.com" required>
+      </div>
+      <div>
+        <label for="phone">Phone Number <span class="label-optional">optional</span></label>
+        <input type="tel" id="phone" placeholder="+1 (000) 000-0000">
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label for="referral">How did you hear about us?</label>
+      <select id="referral">
+        <option value="" disabled selected>Select one</option>
+        <option>Instagram</option>
+        <option>TikTok</option>
+        <option>Word of mouth / referral</option>
+        <option>Google search</option>
+        <option>Facebook</option>
+        <option>I've worked with you before</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <p class="field-error" id="step1-error">Please share your name and a valid email so we can follow up with you.</p>
+
+    <div class="form-nav">
+      <span class="step-counter">1 of 5</span>
+      <button class="btn-next" onclick="nextStep(1)">Continue</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: YOUR EVENT -->
+  <div class="form-section" id="step-2">
+    <div class="section-header">
+      <p class="section-eyebrow">Step Two</p>
+      <h2 class="section-title-text">Tell us about <em>your event</em></h2>
+      <p class="section-desc">Every occasion is different — help us understand what we're creating together.</p>
+    </div>
+
+    <div class="field-group">
+      <label>What type of event are you planning?</label>
+      <div class="options-grid">
+        <div class="option-pill">
+          <input type="radio" name="event-type" id="et-birthday" value="birthday">
+          <label for="et-birthday">🎂 Intimate Birthday</label>
+        </div>
+        <div class="option-pill">
+          <input type="radio" name="event-type" id="et-proposal" value="proposal">
+          <label for="et-proposal">💍 Proposal</label>
+        </div>
+        <div class="option-pill">
+          <input type="radio" name="event-type" id="et-anniversary" value="anniversary">
+          <label for="et-anniversary">🌹 Anniversary</label>
+        </div>
+        <div class="option-pill">
+          <input type="radio" name="event-type" id="et-other" value="other">
+          <label for="et-other">✦ Other Occasion</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-divider"></div>
+
+    <div class="field-group">
+      <label for="honoree">Who is this event for? <span class="label-optional">Name & relationship to you</span></label>
+      <input type="text" id="honoree" placeholder="e.g. Sarah — my best friend of 15 years">
+    </div>
+
+    <div class="field-group">
+      <label for="milestone">What milestone or occasion are we celebrating?</label>
+      <input type="text" id="milestone" placeholder="e.g. Her 30th birthday, our 5-year anniversary">
+    </div>
+
+    <div class="field-row field-group">
+      <div>
+        <label for="event-date">Preferred Event Date</label>
+        <input type="date" id="event-date">
+      </div>
+      <div>
+        <label for="backup-date">Backup Date <span class="label-optional">if flexible</span></label>
+        <input type="date" id="backup-date">
+      </div>
+    </div>
+
+    <div class="field-row field-group">
+      <div>
+        <label for="guest-count">Estimated Guest Count</label>
+        <select id="guest-count">
+          <option value="" disabled selected>Select range</option>
+          <option>Just us (1–2)</option>
+          <option>Very intimate (3–10)</option>
+          <option>Small gathering (11–25)</option>
+          <option>Larger group (26–50)</option>
+          <option>50+</option>
+        </select>
+      </div>
+      <div>
+        <label for="location">Event City / Location</label>
+        <input type="text" id="location" placeholder="e.g. Dallas, TX">
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label>Do you have a venue in mind?</label>
+      <div class="options-grid">
+        <div class="option-pill">
+          <input type="radio" name="venue" id="v-yes" value="yes">
+          <label for="v-yes">Yes, I have one</label>
+        </div>
+        <div class="option-pill">
+          <input type="radio" name="venue" id="v-no" value="no">
+          <label for="v-no">No, help me find one</label>
+        </div>
+        <div class="option-pill">
+          <input type="radio" name="venue" id="v-maybe" value="maybe">
+          <label for="v-maybe">I have some ideas</label>
+        </div>
+        <div class="option-pill">
+          <input type="radio" name="venue" id="v-home" value="home">
+          <label for="v-home">It's at my home</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn-back" onclick="prevStep(2)">Back</button>
+      <span class="step-counter">2 of 5</span>
+      <button class="btn-next" onclick="nextStep(2)">Continue</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: VISION & STYLE -->
+  <div class="form-section" id="step-3">
+    <div class="section-header">
+      <p class="section-eyebrow">Step Three</p>
+      <h2 class="section-title-text">Your <em>vision & style</em></h2>
+      <p class="section-desc">This is where the magic starts. Share as much as you'd like — the more detail, the better.</p>
+    </div>
+
+    <div class="field-group">
+      <label>What vibe are you going for? <span class="label-optional">select all that apply</span></label>
+      <div class="options-grid cols-3">
+        <div class="option-pill checkbox">
+          <input type="checkbox" name="vibe" id="v-romantic" value="Romantic">
+          <label for="v-romantic">Romantic</label>
+        </div>
+        <div class="option-pill checkbox">
+          <input type="checkbox" name="vibe" id="v-elegant" value="Elegant">
+          <label for="v-elegant">Elegant</label>
+        </div>
+        <div class="option-pill checkbox">
+          <input type="checkbox" name="vibe" id="v-whimsical" value="Whimsical">
+          <label for="v-whimsical">Whimsical</label>
+        </div>
+        <div class="option-pill checkbox">
+          <input type="checkbox" name="vibe" id="v-moody" value="Moody & Dramatic">
+          <label for="v-moody">Moody & Dramatic</label>
+        </div>
+        <div class="option-pill checkbox">
+          <input type="checkbox" name="vibe" id="v-rustic" value="Rustic & Earthy">
+          <label for="v-rustic">Rustic & Earthy</label>
+        </div>
+        <div class="option-pill checkbox">
+          <input type="checkbox" name="vibe" id="v-modern" value="Clean & Modern">
+          <label for="v-modern">Clean & Modern</label>
+        </div>
+        <div class="option-pill checkbox">
+          <input type="checkbox" name="vibe" id="v-luxury" value="Luxury & Opulent">
+          <label for="v-luxury">Luxury & Opulent</label>
+        </div>
+        <div class="option-pill checkbox">
+          <input type="checkbox" name="vibe" id="v-playful" value="Fun & Playful">
+          <label for="v-playful">Fun & Playful</label>
+        </div>
+        <div class="option-pill checkbox">
+          <input type="checkbox" name="vibe" id="v-other-vibe" value="Other">
+          <label for="v-other-vibe">Other</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-divider"></div>
+
+    <div class="field-group">
+      <label for="palette">Do you have a color palette in mind? <span class="label-optional">optional</span></label>
+      <input type="text" id="palette" placeholder="e.g. Blush, gold & sage — or I'm open to suggestions">
+    </div>
+
+    <div class="field-group">
+      <label for="inspiration">Describe your dream event in your own words</label>
+      <textarea id="inspiration" placeholder="Paint us a picture — what does it look, feel, and smell like? What do you want the guest of honour to feel when they walk in?"></textarea>
+    </div>
+
+    <div class="field-group">
+      <label for="inspo-links">Pinterest board or inspiration links <span class="label-optional">optional</span></label>
+      <input type="text" id="inspo-links" placeholder="Paste any links here">
+    </div>
+
+    <div class="field-row field-group">
+      <div>
+        <label for="must-haves">Must-haves for this event</label>
+        <textarea id="must-haves" style="min-height:80px;" placeholder="e.g. Floral arch, custom neon sign, live music..."></textarea>
+      </div>
+      <div>
+        <label for="avoid">Things to avoid</label>
+        <textarea id="avoid" style="min-height:80px;" placeholder="e.g. No balloons, she hates surprises, avoid red..."></textarea>
+      </div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn-back" onclick="prevStep(3)">Back</button>
+      <span class="step-counter">3 of 5</span>
+      <button class="btn-next" onclick="nextStep(3)">Continue</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: SERVICES & BUDGET -->
+  <div class="form-section" id="step-4">
+    <div class="section-header">
+      <p class="section-eyebrow">Step Four</p>
+      <h2 class="section-title-text">Services & <em>budget</em></h2>
+      <p class="section-desc">Choose the level of support you're looking for — no packages, just what fits your occasion.</p>
+    </div>
+
+    <div class="field-group">
+      <label>Which service(s) are you interested in? <span class="label-optional">select all that apply</span></label>
+      <div class="options-grid">
+        <div class="option-pill checkbox">
+          <input type="checkbox" name="services" id="s-architect" value="Event Architect">
+          <label for="s-architect">✦ Event Architect</label>
+        </div>
+        <div class="option-pill checkbox">
+          <input type="checkbox" name="services" id="s-decor" value="Event Design & Décor">
+          <label for="s-decor">🌸 Event Design &amp; Décor</label>
+        </div>
+        <div class="option-pill checkbox">
+          <input type="checkbox" name="services" id="s-concierge" value="Event Concierge">
+          <label for="s-concierge">🤍 Event Concierge</label>
+        </div>
+        <div class="option-pill checkbox">
+          <input type="checkbox" name="services" id="s-facilitator" value="Event Day Facilitator">
+          <label for="s-facilitator">👑 Event Day Facilitator</label>
+        </div>
+        <div class="option-pill checkbox">
+          <input type="checkbox" name="services" id="s-photo" value="Photoshoot Assistance">
+          <label for="s-photo">📸 Photoshoot Assistance</label>
+        </div>
+      </div>
+      <p class="field-error" id="service-error">Please select at least one service.</p>
+    </div>
+
+    <div class="field-divider"></div>
+
+    <div class="field-group">
+      <label>What is your estimated budget range for this event?</label>
+      <div class="budget-options options-grid">
+        <div class="option-pill">
+          <input type="radio" name="budget" id="b1" value="Under $500">
+          <label for="b1">Under $500</label>
+        </div>
+        <div class="option-pill">
+          <input type="radio" name="budget" id="b2" value="$500 – $1,000">
+          <label for="b2">$500 – $1,000</label>
+        </div>
+        <div class="option-pill">
+          <input type="radio" name="budget" id="b3" value="$1,000 – $2,500">
+          <label for="b3">$1,000 – $2,500</label>
+        </div>
+        <div class="option-pill">
+          <input type="radio" name="budget" id="b4" value="$2,500 – $5,000">
+          <label for="b4">$2,500 – $5,000</label>
+        </div>
+        <div class="option-pill">
+          <input type="radio" name="budget" id="b5" value="$5,000+">
+          <label for="b5">$5,000+</label>
+        </div>
+        <div class="option-pill">
+          <input type="radio" name="budget" id="b6" value="Flexible / Let's talk">
+          <label for="b6">Flexible / Let's talk</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn-back" onclick="prevStep(4)">Back</button>
+      <span class="step-counter">4 of 5</span>
+      <button class="btn-next" onclick="nextStep(4)">Continue</button>
+    </div>
+  </div>
+
+  <!-- STEP 5: FINAL DETAILS -->
+  <div class="form-section" id="step-5">
+    <div class="section-header">
+      <p class="section-eyebrow">Step Five</p>
+      <h2 class="section-title-text">The <em>final touches</em></h2>
+      <p class="section-desc">A few last details that help us make this feel completely personal.</p>
+    </div>
+
+    <div class="field-group">
+      <label for="honoree-details">Is there anything about the guest of honour we should know to make this extra personal?</label>
+      <textarea id="honoree-details" placeholder="Their favourite flowers, colours, a meaningful song, a running joke, something they've always dreamed of — anything goes here."></textarea>
+    </div>
+
+    <div class="field-divider"></div>
+
+    <div class="field-group">
+      <label>Is this event a surprise?</label>
+      <div class="options-grid">
+        <div class="option-pill">
+          <input type="radio" name="surprise" id="sur-yes" value="Yes — they have no idea">
+          <label for="sur-yes">Yes — they have no idea</label>
+        </div>
+        <div class="option-pill">
+          <input type="radio" name="surprise" id="sur-no" value="No — they know about it">
+          <label for="sur-no">No — they know about it</label>
+        </div>
+        <div class="option-pill">
+          <input type="radio" name="surprise" id="sur-partial" value="Partially — they know something is happening">
+          <label for="sur-partial">Partially — they know something is happening</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label for="timeline">How soon are you looking to confirm and begin planning?</label>
+      <select id="timeline">
+        <option value="" disabled selected>Select one</option>
+        <option>ASAP — the date is very soon</option>
+        <option>Within the next 2 weeks</option>
+        <option>Within the next month</option>
+        <option>I'm planning ahead (1–3 months out)</option>
+        <option>Just exploring for now</option>
+      </select>
+    </div>
+
+    <div class="field-group">
+      <label for="questions">Any questions for us before we get started? <span class="label-optional">optional</span></label>
+      <textarea id="questions" style="min-height:80px;" placeholder="We'll answer everything in your consultation call."></textarea>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn-back" onclick="prevStep(5)">Back</button>
+      <span class="step-counter">5 of 5</span>
+      <button class="btn-submit" onclick="submitForm()">Send Inquiry</button>
+    </div>
+  </div>
+
+  <!-- SUCCESS SCREEN -->
+  <div class="success-screen" id="success">
+    <svg class="success-emblem" width="72" height="72" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="47" stroke="#C9A96E" stroke-width="0.7" opacity="0.45"/>
+      <circle cx="50" cy="50" r="38" stroke="#C9A96E" stroke-width="0.4" opacity="0.25"/>
+      <path d="M50 8 C54 24 54 24 50 40 C46 24 46 24 50 8Z" fill="#C9A96E" opacity="0.82"/>
+      <path d="M50 60 C54 76 54 76 50 92 C46 76 46 76 50 60Z" fill="#C9A96E" opacity="0.82"/>
+      <path d="M8 50 C24 46 24 46 40 50 C24 54 24 54 8 50Z" fill="#C9A96E" opacity="0.82"/>
+      <path d="M60 50 C76 46 76 46 92 50 C76 54 76 54 60 50Z" fill="#C9A96E" opacity="0.82"/>
+      <path d="M50 50 C42 42 38 30 26 24 C30 36 36 42 50 50Z" fill="#C4879A" opacity="0.55"/>
+      <path d="M50 50 C58 58 62 70 74 76 C70 64 64 58 50 50Z" fill="#C4879A" opacity="0.55"/>
+      <path d="M50 50 C58 42 70 38 76 26 C64 30 58 36 50 50Z" fill="#C4879A" opacity="0.55"/>
+      <path d="M50 50 C42 58 30 62 24 74 C36 70 42 64 50 50Z" fill="#C4879A" opacity="0.55"/>
+      <circle cx="50" cy="50" r="6" fill="#C9A96E" opacity="0.9"/>
+      <circle cx="50" cy="50" r="3.2" fill="#FAF6F0"/>
+    </svg>
+    <h2 class="success-title">We've received<br>your inquiry</h2>
+    <p class="success-sub">Thank you for reaching out to Curated by Occasions. Your email app should have opened with your answers ready to send — just hit send from there and we'll be in touch within 48 hours to schedule your complimentary consultation call.</p>
+    <div style="border-top:1px solid rgba(160,92,107,0.15);padding-top:22px;margin-top:4px;">
+      <p style="font-family:'Jost',sans-serif;font-weight:300;font-size:11px;color:rgba(44,34,33,0.45);letter-spacing:1px;margin-bottom:10px;">You can also reach us directly at</p>
+      <a href="mailto:curatedbyoccasions@gmail.com" style="font-family:'Cinzel',serif;font-weight:300;font-size:12px;letter-spacing:2px;color:var(--dusty);text-decoration:none;display:inline-flex;align-items:center;gap:8px;opacity:0.8;">
+        ✦ &nbsp;curatedbyoccasions@gmail.com
+      </a>
+    </div>
+    <p class="success-brand" style="margin-top:28px;">Curated by Occasions ✦</p>
+  </div>
+
+</div><!-- end form-body -->
 
 <script>
-  var form = document.getElementById('intake-form');
-  var serviceError = document.getElementById('service-error');
-  var confirmMsg = document.getElementById('submit-confirm');
+  let currentStep = 1;
+  const totalSteps = 5;
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
+  function goToStep(n) {
+    document.getElementById('step-' + currentStep).classList.remove('active');
+    document.querySelectorAll('.step-tab')[currentStep - 1].classList.remove('active');
+    currentStep = n;
+    document.getElementById('step-' + currentStep).classList.add('active');
+    document.querySelectorAll('.step-tab')[currentStep - 1].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
-    var checkedServices = Array.prototype.slice
-      .call(form.querySelectorAll('input[name="services"]:checked'))
+  function validateStep1() {
+    var fname = document.getElementById('fname');
+    var lname = document.getElementById('lname');
+    var email = document.getElementById('email');
+    var error = document.getElementById('step1-error');
+    var valid = fname.value.trim() && lname.value.trim() && email.checkValidity() && email.value.trim();
+    error.classList.toggle('visible', !valid);
+    return valid;
+  }
+
+  function validateStep4() {
+    var checked = document.querySelectorAll('input[name="services"]:checked').length > 0;
+    document.getElementById('service-error').classList.toggle('visible', !checked);
+    return checked;
+  }
+
+  function nextStep(from) {
+    if (from === 1 && !validateStep1()) { return; }
+    if (from === 4 && !validateStep4()) { return; }
+    if (from < totalSteps) {
+      document.querySelectorAll('.step-tab')[from - 1].classList.remove('active');
+      document.querySelectorAll('.step-tab')[from - 1].classList.add('completed');
+      goToStep(from + 1);
+    }
+  }
+
+  function prevStep(from) {
+    if (from > 1) goToStep(from - 1);
+  }
+
+  function val(id) {
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+
+  function checkedValues(name) {
+    return Array.prototype.slice
+      .call(document.querySelectorAll('input[name="' + name + '"]:checked'))
       .map(function (el) { return el.value; });
+  }
 
-    if (checkedServices.length === 0) {
-      serviceError.classList.add('visible');
-      document.getElementById('service-chips').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
-    serviceError.classList.remove('visible');
+  function submitForm() {
+    if (!validateStep1()) { goToStep(1); return; }
+    if (!validateStep4()) { goToStep(4); return; }
 
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    var data = {
-      fullName: form.fullName.value.trim(),
-      email: form.email.value.trim(),
-      phone: form.phone.value.trim(),
-      referral: form.referral.value,
-      eventType: form.eventType.value.trim(),
-      eventDate: form.eventDate.value.trim(),
-      guestCount: form.guestCount.value.trim(),
-      location: form.location.value.trim(),
-      budget: form.budget.value,
-      vision: form.vision.value.trim()
-    };
+    var services = checkedValues('services');
+    var vibes = checkedValues('vibe');
 
     var lines = [
-      'New event inquiry from ' + data.fullName,
+      'New event inquiry from ' + val('fname') + ' ' + val('lname'),
       '',
-      'Name: ' + data.fullName,
-      'Email: ' + data.email,
-      'Phone: ' + (data.phone || '—'),
-      'How they heard about us: ' + (data.referral || '—'),
+      '— About you —',
+      'Name: ' + val('fname') + ' ' + val('lname'),
+      'Email: ' + val('email'),
+      'Phone: ' + (val('phone') || '—'),
+      'How they heard about us: ' + (val('referral') || '—'),
       '',
-      'Event type: ' + data.eventType,
-      'Event date: ' + (data.eventDate || '—'),
-      'Estimated guest count: ' + (data.guestCount || '—'),
-      'Location / venue: ' + (data.location || '—'),
-      'Estimated budget: ' + (data.budget || 'Prefer to discuss'),
+      '— The event —',
+      'Event type: ' + (checkedValues('event-type')[0] || '—'),
+      'Who it\'s for: ' + (val('honoree') || '—'),
+      'Milestone: ' + (val('milestone') || '—'),
+      'Preferred date: ' + (val('event-date') || '—'),
+      'Backup date: ' + (val('backup-date') || '—'),
+      'Guest count: ' + (val('guest-count') || '—'),
+      'Location: ' + (val('location') || '—'),
+      'Venue in mind: ' + (checkedValues('venue')[0] || '—'),
       '',
-      'Services interested in: ' + checkedServices.join(', '),
+      '— Vision & style —',
+      'Vibe: ' + (vibes.length ? vibes.join(', ') : '—'),
+      'Colour palette: ' + (val('palette') || '—'),
+      'Dream event, in their words: ' + (val('inspiration') || '—'),
+      'Inspiration links: ' + (val('inspo-links') || '—'),
+      'Must-haves: ' + (val('must-haves') || '—'),
+      'Things to avoid: ' + (val('avoid') || '—'),
       '',
-      'Their vision:',
-      data.vision || '—'
+      '— Services & budget —',
+      'Services interested in: ' + (services.length ? services.join(', ') : '—'),
+      'Estimated budget: ' + (checkedValues('budget')[0] || '—'),
+      '',
+      '— Final details —',
+      'About the guest of honour: ' + (val('honoree-details') || '—'),
+      'Surprise?: ' + (checkedValues('surprise')[0] || '—'),
+      'Timeline to begin planning: ' + (val('timeline') || '—'),
+      'Questions for us: ' + (val('questions') || '—')
     ];
 
-    var subject = encodeURIComponent('New Event Inquiry — ' + data.fullName);
+    var subject = encodeURIComponent('New Event Inquiry — ' + val('fname') + ' ' + val('lname'));
     var body = encodeURIComponent(lines.join('\n'));
     var mailtoLink = 'mailto:curatedbyoccasions@gmail.com?subject=' + subject + '&body=' + body;
 
-    confirmMsg.classList.add('visible');
-    window.location.href = mailtoLink;
-  });
+    document.getElementById('step-5').classList.remove('active');
+    document.querySelectorAll('.step-tab')[4].classList.remove('active');
+    document.querySelectorAll('.step-tab')[4].classList.add('completed');
+    document.getElementById('success').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  form.querySelectorAll('input[name="services"]').forEach(function (checkbox) {
-    checkbox.addEventListener('change', function () {
-      if (form.querySelectorAll('input[name="services"]:checked').length > 0) {
-        serviceError.classList.remove('visible');
-      }
-    });
-  });
+    window.location.href = mailtoLink;
+  }
 </script>
 
 </body>
