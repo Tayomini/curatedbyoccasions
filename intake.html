@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Intake — Curated by Occasions</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&family=Cinzel:wght@300;400&display=swap');
+
+  :root{
+    --plum:#3D1C2E; --plum-mid:#5a2d46; --champagne:#F5ECD7; --blush:#E8C4B8;
+    --mauve:#C4879A; --dusty:#A05C6B; --gold:#C9A96E; --sage:#9BAF9B;
+    --cream:#FAF6F0; --charcoal:#2C2221;
+    --text-muted:rgba(44,34,33,.65); --text-muted-on-dark:rgba(245,236,215,.45);
+    --border-subtle:rgba(160,92,107,.12); --border-gold:rgba(201,169,110,.3);
+    --tag-bg:rgba(160,92,107,.08); --tag-border:rgba(160,92,107,.15);
+    --font-display:'Cormorant Garamond',serif;
+    --font-label:'Cinzel',serif;
+    --font-body:'Jost',sans-serif;
+    --radius-pill:20px;
+    --ease-signature:cubic-bezier(.22,1,.36,1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--plum); font-family: var(--font-body); color: var(--charcoal); min-height: 100vh; }
+
+  /* ═══ HERO ═══ */
+  .cover {
+    min-height: 70vh; background: var(--plum); position: relative; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 60px 40px; text-align: center;
+  }
+  .cover::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(196,135,154,0.22) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 70%, rgba(201,169,110,0.14) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(61,28,46,0.4) 0%, transparent 70%);
+  }
+  .corner { position: absolute; width: 60px; height: 60px; }
+  .corner.tl { top: 32px; left: 32px; border-top: 1px solid var(--border-gold); border-left: 1px solid var(--border-gold); }
+  .corner.tr { top: 32px; right: 32px; border-top: 1px solid var(--border-gold); border-right: 1px solid var(--border-gold); }
+  .corner.bl { bottom: 32px; left: 32px; border-bottom: 1px solid var(--border-gold); border-left: 1px solid var(--border-gold); }
+  .corner.br { bottom: 32px; right: 32px; border-bottom: 1px solid var(--border-gold); border-right: 1px solid var(--border-gold); }
+
+  .cover-inner { position: relative; z-index: 1; max-width: 620px; opacity: 0; transform: translateY(16px); animation: fadeUp 1s var(--ease-signature) forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  .cover-eyebrow {
+    font-weight: 200; font-size: 9px; letter-spacing: 6px; text-transform: uppercase;
+    color: rgba(201,169,110,0.55); margin-bottom: 36px; display: flex; align-items: center; justify-content: center; gap: 14px;
+  }
+  .cover-eyebrow::before, .cover-eyebrow::after { content: ''; width: 36px; height: 1px; background: rgba(201,169,110,0.3); }
+  .cover-ornament { color: var(--gold); font-size: 11px; letter-spacing: 16px; opacity: 0.5; margin-bottom: 28px; display: block; }
+  .cover-headline {
+    font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: clamp(32px, 5vw, 54px);
+    color: var(--champagne); line-height: 1.1; margin-bottom: 24px; letter-spacing: 1px;
+  }
+  .cover-sub { font-weight: 200; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted-on-dark); }
+
+  /* ═══ FORM SECTION ═══ */
+  .form-section { background: var(--cream); padding: 90px 40px 110px; }
+  .form-wrap { max-width: 640px; margin: 0 auto; }
+  .form-intro-label { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); font-weight: 300; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .form-intro-label::before { content: '✦'; font-size: 8px; color: var(--gold); }
+  .form-heading { font-family: var(--font-display); font-weight: 300; font-size: 32px; color: var(--plum); line-height: 1.2; margin-bottom: 18px; }
+  .form-heading em { font-style: italic; color: var(--dusty); }
+  .form-intro-body { font-size: 13.5px; font-weight: 300; line-height: 1.85; color: var(--text-muted); margin-bottom: 64px; max-width: 520px; }
+
+  fieldset { border: none; margin: 0 0 48px; padding: 0; }
+  .fieldset-label {
+    font-family: var(--font-label); font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--dusty); font-weight: 400; margin-bottom: 24px; padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 34px; }
+  .field { display: flex; flex-direction: column; }
+  .field.full { grid-column: 1 / -1; }
+  .field label {
+    font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 400;
+    color: rgba(44,34,33,0.45); margin-bottom: 10px;
+  }
+  .field .optional { text-transform: none; letter-spacing: 0; font-style: italic; font-family: var(--font-display); opacity: 0.9; }
+
+  .field input[type="text"],
+  .field input[type="email"],
+  .field input[type="tel"],
+  .field input[type="number"],
+  .field input[type="date"],
+  .field select,
+  .field textarea {
+    font-family: var(--font-body); font-weight: 300; font-size: 14px; color: var(--charcoal);
+    background: transparent; border: none; border-bottom: 1px solid var(--border-subtle);
+    padding: 8px 2px 12px; outline: none; transition: border-color 0.2s; width: 100%;
+    appearance: none; -webkit-appearance: none; border-radius: 0;
+  }
+  .field select { cursor: pointer; }
+  .field textarea { resize: vertical; min-height: 110px; line-height: 1.7; }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--dusty); }
+  .field input::placeholder, .field textarea::placeholder { color: rgba(44,34,33,0.28); font-weight: 300; }
+
+  /* custom select arrow, kept minimal */
+  .field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23A05C6B'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 4px center; padding-right: 20px;
+  }
+
+  /* service chips */
+  .service-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .service-chip { position: relative; }
+  .service-chip input { position: absolute; opacity: 0; width: 100%; height: 100%; cursor: pointer; margin: 0; }
+  .service-chip label {
+    display: flex; align-items: center; gap: 8px; cursor: pointer;
+    font-size: 11px; font-weight: 300; letter-spacing: 0.5px; color: var(--plum);
+    background: var(--tag-bg); border: 1px solid var(--tag-border);
+    padding: 10px 18px; border-radius: var(--radius-pill); transition: background 0.2s, border-color 0.2s, color 0.2s;
+    text-transform: none; margin: 0;
+  }
+  .service-chip .chip-icon { font-size: 13px; }
+  .service-chip input:checked + label {
+    background: var(--plum); border-color: var(--plum); color: var(--champagne);
+  }
+  .service-chip input:focus-visible + label { outline: 1px solid var(--dusty); outline-offset: 2px; }
+  .field-error { font-size: 11px; color: var(--dusty); margin-top: 12px; display: none; font-style: italic; font-family: var(--font-display); }
+  .field-error.visible { display: block; }
+
+  .submit-row { margin-top: 8px; }
+  .submit-button {
+    display: inline-block; font-family: var(--font-body); font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 400; color: var(--plum); background: none; border: 1px solid var(--border-gold);
+    padding: 16px 40px; cursor: pointer; transition: background 0.2s, color 0.2s;
+  }
+  .submit-button:hover { background: var(--plum); color: var(--champagne); }
+  .submit-note { font-size: 11px; font-weight: 300; color: var(--text-muted); margin-top: 18px; line-height: 1.7; max-width: 460px; }
+  .submit-confirm {
+    display: none; margin-top: 22px; font-family: var(--font-display); font-style: italic; font-size: 15px; color: var(--dusty);
+  }
+  .submit-confirm.visible { display: block; }
+
+  /* ═══ FOOTER ═══ */
+  .site-footer { background: var(--cream); text-align: center; padding: 0 40px 60px; }
+  .footer-ornament { color: var(--gold); font-size: 10px; letter-spacing: 12px; opacity: 0.5; display: block; margin-bottom: 18px; }
+  .footer-brand { font-family: var(--font-label); font-size: 12px; letter-spacing: 3px; color: var(--plum); text-transform: uppercase; }
+
+  /* ═══ SITE NAV (fixed, top left) ═══ */
+  .site-nav {
+    position: fixed; top: 130px; left: 32px; z-index: 500; display: flex; align-items: center; gap: 14px;
+    font-family: var(--font-body); font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
+    background: var(--plum); border: 1px solid var(--border-gold); padding: 12px 20px;
+  }
+  .site-nav a { color: var(--champagne); text-decoration: none; opacity: 0.55; transition: opacity 0.2s; }
+  .site-nav a:hover, .site-nav a.active { opacity: 1; }
+  .site-nav .nav-sep { color: var(--border-gold); opacity: 0.6; }
+
+  @media (max-width: 720px) {
+    .field-row { grid-template-columns: 1fr; gap: 0; }
+    .form-section { padding: 70px 24px 90px; }
+  }
+  @media (max-width: 520px) {
+    .site-nav { top: 100px; left: 16px; padding: 10px 14px; gap: 10px; font-size: 8px; letter-spacing: 2px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html">Home</a>
+  <span class="nav-sep">·</span>
+  <a href="about.html">About</a>
+  <span class="nav-sep">·</span>
+  <a href="intake.html" class="active">Inquire</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="cover">
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <div class="cover-inner">
+    <p class="cover-eyebrow">Client Intake</p>
+    <span class="cover-ornament">✦ · ✦ · ✦</span>
+    <h1 class="cover-headline">Tell us about<br>your vision.</h1>
+    <p class="cover-sub">Every detail starts with your story</p>
+  </div>
+</section>
+
+<!-- ═══ FORM ═══ -->
+<section class="form-section">
+  <div class="form-wrap">
+    <p class="form-intro-label">Before we begin</p>
+    <h2 class="form-heading">A few details to<br><em>get us started.</em></h2>
+    <p class="form-intro-body">There's no wrong way to answer these. Share what you know, skip what you don't, and we'll follow up personally within 48 hours to talk through the rest. No packages, no templates — just a conversation to start building something personalized to you.</p>
+
+    <form id="intake-form" novalidate>
+
+      <fieldset>
+        <p class="fieldset-label">Your details</p>
+        <div class="field-row">
+          <div class="field">
+            <label for="fullName">Full name</label>
+            <input type="text" id="fullName" name="fullName" required placeholder="Jane Doe">
+          </div>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" required placeholder="jane@email.com">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="phone">Phone number <span class="optional">(optional)</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+          </div>
+          <div class="field">
+            <label for="referral">How did you hear about us? <span class="optional">(optional)</span></label>
+            <select id="referral" name="referral">
+              <option value="">Select one</option>
+              <option value="Instagram">Instagram</option>
+              <option value="Referral">Referral from a friend</option>
+              <option value="Google / web search">Google / web search</option>
+              <option value="Past client">Past client</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <p class="fieldset-label">Your event</p>
+        <div class="field-row">
+          <div class="field">
+            <label for="eventType">Event type</label>
+            <input type="text" id="eventType" name="eventType" required placeholder="Wedding, birthday, proposal…">
+          </div>
+          <div class="field">
+            <label for="eventDate">Event date <span class="optional">(or a rough month)</span></label>
+            <input type="text" id="eventDate" name="eventDate" placeholder="e.g. June 2027 or TBD">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="guestCount">Estimated guest count <span class="optional">(optional)</span></label>
+            <input type="number" id="guestCount" name="guestCount" min="1" placeholder="e.g. 40">
+          </div>
+          <div class="field">
+            <label for="location">Event location / venue <span class="optional">(optional)</span></label>
+            <input type="text" id="location" name="location" placeholder="City or venue name">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field full">
+            <label for="budget">Estimated budget <span class="optional">(optional, helps us plan)</span></label>
+            <select id="budget" name="budget">
+              <option value="">Prefer to discuss</option>
+              <option value="Under $2,000">Under $2,000</option>
+              <option value="$2,000–$5,000">$2,000–$5,000</option>
+              <option value="$5,000–$10,000">$5,000–$10,000</option>
+              <option value="$10,000+">$10,000+</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <p class="fieldset-label">Services you're interested in</p>
+        <div class="service-chips" id="service-chips">
+          <div class="service-chip">
+            <input type="checkbox" id="svc-architect" name="services" value="Event Architect">
+            <label for="svc-architect"><span class="chip-icon">✦</span>Event Architect</label>
+          </div>
+          <div class="service-chip">
+            <input type="checkbox" id="svc-decor" name="services" value="Event Design & Décor">
+            <label for="svc-decor"><span class="chip-icon">🌸</span>Event Design &amp; Décor</label>
+          </div>
+          <div class="service-chip">
+            <input type="checkbox" id="svc-concierge" name="services" value="Event Concierge">
+            <label for="svc-concierge"><span class="chip-icon">🤍</span>Event Concierge</label>
+          </div>
+          <div class="service-chip">
+            <input type="checkbox" id="svc-facilitator" name="services" value="Event Day Facilitator">
+            <label for="svc-facilitator"><span class="chip-icon">👑</span>Event Day Facilitator</label>
+          </div>
+          <div class="service-chip">
+            <input type="checkbox" id="svc-photo" name="services" value="Photoshoot Assistance">
+            <label for="svc-photo"><span class="chip-icon">📸</span>Photoshoot Assistance</label>
+          </div>
+        </div>
+        <p class="field-error" id="service-error">Please select at least one service.</p>
+      </fieldset>
+
+      <fieldset>
+        <p class="fieldset-label">Your vision</p>
+        <div class="field">
+          <label for="vision">Tell us about your vision <span class="optional">(optional, but we'd love to hear it)</span></label>
+          <textarea id="vision" name="vision" placeholder="Describe the feeling, aesthetic, or story you want your event to tell…"></textarea>
+        </div>
+      </fieldset>
+
+      <div class="submit-row">
+        <button type="submit" class="submit-button">Submit inquiry</button>
+        <p class="submit-note">Submitting opens your email app with these answers ready to send to curatedbyoccasions@gmail.com — just hit send from there. Prefer not to? DM us on Instagram @curatedbyoccasions instead.</p>
+        <p class="submit-confirm" id="submit-confirm">Thank you — your email is ready. We can't wait to hear more. ✦</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <span class="footer-ornament">✦ · ✦ · ✦</span>
+  <p class="footer-brand">Curated by Occasions</p>
+</footer>
+
+<script>
+  var form = document.getElementById('intake-form');
+  var serviceError = document.getElementById('service-error');
+  var confirmMsg = document.getElementById('submit-confirm');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var checkedServices = Array.prototype.slice
+      .call(form.querySelectorAll('input[name="services"]:checked'))
+      .map(function (el) { return el.value; });
+
+    if (checkedServices.length === 0) {
+      serviceError.classList.add('visible');
+      document.getElementById('service-chips').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    serviceError.classList.remove('visible');
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    var data = {
+      fullName: form.fullName.value.trim(),
+      email: form.email.value.trim(),
+      phone: form.phone.value.trim(),
+      referral: form.referral.value,
+      eventType: form.eventType.value.trim(),
+      eventDate: form.eventDate.value.trim(),
+      guestCount: form.guestCount.value.trim(),
+      location: form.location.value.trim(),
+      budget: form.budget.value,
+      vision: form.vision.value.trim()
+    };
+
+    var lines = [
+      'New event inquiry from ' + data.fullName,
+      '',
+      'Name: ' + data.fullName,
+      'Email: ' + data.email,
+      'Phone: ' + (data.phone || '—'),
+      'How they heard about us: ' + (data.referral || '—'),
+      '',
+      'Event type: ' + data.eventType,
+      'Event date: ' + (data.eventDate || '—'),
+      'Estimated guest count: ' + (data.guestCount || '—'),
+      'Location / venue: ' + (data.location || '—'),
+      'Estimated budget: ' + (data.budget || 'Prefer to discuss'),
+      '',
+      'Services interested in: ' + checkedServices.join(', '),
+      '',
+      'Their vision:',
+      data.vision || '—'
+    ];
+
+    var subject = encodeURIComponent('New Event Inquiry — ' + data.fullName);
+    var body = encodeURIComponent(lines.join('\n'));
+    var mailtoLink = 'mailto:curatedbyoccasions@gmail.com?subject=' + subject + '&body=' + body;
+
+    confirmMsg.classList.add('visible');
+    window.location.href = mailtoLink;
+  });
+
+  form.querySelectorAll('input[name="services"]').forEach(function (checkbox) {
+    checkbox.addEventListener('change', function () {
+      if (form.querySelectorAll('input[name="services"]:checked').length > 0) {
+        serviceError.classList.remove('visible');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
