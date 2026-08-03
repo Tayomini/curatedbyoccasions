@@ -177,7 +177,7 @@
   /* ═══ SITE CTA (fixed, top right) ═══ */
   .site-cta {
     position: fixed;
-    top: 28px;
+    top: 130px;
     right: 32px;
     z-index: 500;
     display: inline-block;
@@ -196,11 +196,42 @@
   .site-cta:hover { background: var(--gold); color: var(--plum); border-color: var(--gold); }
 
   @media (max-width: 520px) {
-    .site-cta { top: 16px; right: 16px; font-size: 8px; padding: 10px 16px; letter-spacing: 2px; }
+    .site-cta { top: 100px; right: 16px; font-size: 8px; padding: 10px 16px; letter-spacing: 2px; }
+  }
+
+  /* ═══ SITE NAV (fixed, top left) ═══ */
+  .site-nav {
+    position: fixed;
+    top: 130px;
+    left: 32px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-body);
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    background: var(--plum);
+    border: 1px solid var(--border-gold);
+    padding: 12px 20px;
+  }
+  .site-nav a { color: var(--champagne); text-decoration: none; opacity: 0.55; transition: opacity 0.2s; }
+  .site-nav a:hover, .site-nav a.active { opacity: 1; }
+  .site-nav .nav-sep { color: var(--border-gold); opacity: 0.6; }
+
+  @media (max-width: 520px) {
+    .site-nav { top: 100px; left: 16px; padding: 10px 14px; gap: 10px; font-size: 8px; letter-spacing: 2px; }
   }
 </style>
 </head>
 <body>
+
+<nav class="site-nav">
+  <a href="index.html" class="active">Home</a>
+  <span class="nav-sep">·</span>
+  <a href="about.html">About</a>
+</nav>
 
 <a class="site-cta" href="mailto:curatedbyoccasions@gmail.com">Submit an inquiry</a>
 
