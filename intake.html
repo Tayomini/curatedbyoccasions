@@ -4,540 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Curated by Occasions — Client Intake Form</title>
+<link rel="canonical" href="https://curatedbyoccasions.com/intake">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&family=Cinzel:wght@300;400&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --champagne: #F5ECD7;
-    --blush:     #E8C4B8;
-    --mauve:     #C4879A;
-    --dusty:     #A05C6B;
-    --plum:      #3D1C2E;
-    --plum-mid:  #5a2d46;
-    --sage:      #9BAF9B;
-    --gold:      #C9A96E;
-    --cream:     #FAF6F0;
-    --cream-dark:#F0E8DC;
-    --charcoal:  #2C2221;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--cream);
-    font-family: 'Jost', sans-serif;
-    color: var(--charcoal);
-    min-height: 100vh;
-  }
-
-  /* ── SITE TOPBAR ── */
-  .site-topbar {
-    background: var(--plum-mid);
-    padding: 14px 32px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    font-family: 'Jost', sans-serif;
-    font-size: 9px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-  }
-  .site-topbar a { color: var(--champagne); text-decoration: none; opacity: 0.55; transition: opacity 0.2s; }
-  .site-topbar a:hover, .site-topbar a.active { opacity: 1; }
-  .site-topbar .nav-sep { color: rgba(201,169,110,0.4); }
-
-  /* ── HERO HEADER ── */
-  .hero {
-    background: var(--plum);
-    position: relative;
-    overflow: hidden;
-    padding: 0;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse at 15% 80%, rgba(196,135,154,0.25) 0%, transparent 50%),
-      radial-gradient(ellipse at 85% 20%, rgba(201,169,110,0.15) 0%, transparent 50%);
-  }
-  .hero-inner {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 380px;
-  }
-  .hero-left {
-    padding: 64px 56px 56px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .hero-eyebrow {
-    font-family: 'Jost', sans-serif;
-    font-weight: 200;
-    font-size: 9px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 22px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .hero-eyebrow::before {
-    content: '';
-    width: 28px; height: 1px;
-    background: var(--gold);
-    opacity: 0.5;
-  }
-  .hero-brand {
-    font-family: 'Cinzel', serif;
-    font-weight: 300;
-    font-size: clamp(22px, 3.5vw, 38px);
-    color: var(--champagne);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    line-height: 1.1;
-    margin-bottom: 4px;
-  }
-  .hero-brand-by {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(14px, 2vw, 22px);
-    color: var(--mauve);
-    letter-spacing: 2px;
-    display: block;
-    margin-bottom: 20px;
-  }
-  .hero-tagline {
-    font-family: 'Jost', sans-serif;
-    font-weight: 200;
-    font-size: 10px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: rgba(245,236,215,0.4);
-    margin-bottom: 32px;
-  }
-  .hero-desc {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 1.7;
-    color: rgba(245,236,215,0.65);
-    max-width: 380px;
-  }
-
-  /* hero right — decorative emblem panel */
-  .hero-right {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    border-left: 1px solid rgba(201,169,110,0.1);
-  }
-  .hero-emblem-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    opacity: 0.9;
-  }
-  .hero-emblem-sub {
-    font-family: 'Jost', sans-serif;
-    font-weight: 200;
-    font-size: 8px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: rgba(201,169,110,0.4);
-  }
-
-  /* ── PROGRESS BAR ── */
-  .progress-bar-wrap {
-    background: var(--plum);
-    padding: 0;
-    border-bottom: 1px solid rgba(201,169,110,0.1);
-  }
-  .progress-steps {
-    display: flex;
-    align-items: stretch;
-  }
-  .step-tab {
-    flex: 1;
-    padding: 16px 12px;
-    text-align: center;
-    cursor: pointer;
-    border-right: 1px solid rgba(201,169,110,0.08);
-    transition: background 0.3s;
-    position: relative;
-  }
-  .step-tab:last-child { border-right: none; }
-  .step-tab.active { background: rgba(201,169,110,0.1); }
-  .step-tab.completed { background: rgba(155,175,155,0.08); }
-  .step-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 10px;
-    color: rgba(201,169,110,0.4);
-    display: block;
-    margin-bottom: 3px;
-  }
-  .step-tab.active .step-num { color: var(--gold); }
-  .step-tab.completed .step-num { color: var(--sage); }
-  .step-name {
-    font-size: 8px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 300;
-    color: rgba(245,236,215,0.3);
-  }
-  .step-tab.active .step-name { color: rgba(245,236,215,0.75); }
-  .step-tab.completed .step-name { color: rgba(155,175,155,0.7); }
-  .step-tab.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--gold);
-  }
-
-  /* ── FORM BODY ── */
-  .form-body {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 60px 40px 100px;
-  }
-
-  /* ── SECTION BLOCK ── */
-  .form-section {
-    display: none;
-    animation: slideIn 0.4s ease both;
-  }
-  .form-section.active { display: block; }
-
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .section-header {
-    margin-bottom: 40px;
-  }
-  .section-eyebrow {
-    font-size: 9px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 300;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .section-eyebrow::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, rgba(201,169,110,0.3), transparent);
-  }
-  .section-title-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: 36px;
-    color: var(--plum);
-    line-height: 1.1;
-    margin-bottom: 10px;
-  }
-  .section-title-text em {
-    font-style: italic;
-    color: var(--dusty);
-  }
-  .section-desc {
-    font-size: 13px;
-    font-weight: 300;
-    color: rgba(44,34,33,0.55);
-    line-height: 1.7;
-  }
-
-  /* ── FIELDS ── */
-  .field-group {
-    margin-bottom: 28px;
-  }
-  .field-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-  }
-
-  label {
-    display: block;
-    font-size: 10px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    font-weight: 400;
-    color: var(--dusty);
-    margin-bottom: 9px;
-  }
-  .label-optional {
-    font-size: 8px;
-    letter-spacing: 1px;
-    text-transform: none;
-    font-style: italic;
-    color: rgba(160,92,107,0.5);
-    font-weight: 300;
-    margin-left: 6px;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="date"],
-  input[type="number"],
-  textarea,
-  select {
-    width: 100%;
-    background: #fff;
-    border: 1px solid rgba(160,92,107,0.18);
-    border-radius: 3px;
-    padding: 14px 16px;
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    font-size: 14px;
-    color: var(--charcoal);
-    outline: none;
-    transition: border-color 0.25s, box-shadow 0.25s;
-    -webkit-appearance: none;
-  }
-  input:focus, textarea:focus, select:focus {
-    border-color: var(--dusty);
-    box-shadow: 0 0 0 3px rgba(160,92,107,0.08);
-  }
-  input:invalid.touched, select:invalid.touched { border-color: var(--dusty); }
-  input::placeholder, textarea::placeholder { color: rgba(44,34,33,0.3); font-weight: 200; }
-
-  textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
-
-  select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A05C6B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 16px center;
-    padding-right: 40px;
-    cursor: pointer;
-  }
-
-  /* ── RADIO / CHECKBOX ── */
-  .options-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .options-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
-  .options-grid.cols-1 { grid-template-columns: 1fr; }
-
-  .option-pill {
-    position: relative;
-  }
-  .option-pill input {
-    position: absolute;
-    opacity: 0;
-    width: 0; height: 0;
-  }
-  .option-pill label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 13px 16px;
-    background: #fff;
-    border: 1px solid rgba(160,92,107,0.15);
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 12px;
-    letter-spacing: 1px;
-    text-transform: none;
-    color: var(--charcoal);
-    font-weight: 300;
-    transition: all 0.2s;
-    margin-bottom: 0;
-  }
-  .option-pill label::before {
-    content: '';
-    width: 14px; height: 14px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(160,92,107,0.3);
-    flex-shrink: 0;
-    transition: all 0.2s;
-  }
-  .option-pill.checkbox label::before { border-radius: 2px; }
-  .option-pill input:checked + label {
-    background: rgba(160,92,107,0.06);
-    border-color: var(--dusty);
-    color: var(--plum);
-  }
-  .option-pill input:checked + label::before {
-    background: var(--dusty);
-    border-color: var(--dusty);
-  }
-
-  /* ── BUDGET SLIDER ── */
-  .budget-options {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  /* ── DIVIDER ── */
-  .field-divider {
-    height: 1px;
-    background: linear-gradient(to right, rgba(160,92,107,0.15), transparent);
-    margin: 36px 0;
-  }
-
-  /* ── ERROR TEXT ── */
-  .field-error {
-    font-size: 11px;
-    font-style: italic;
-    font-family: 'Cormorant Garamond', serif;
-    color: var(--dusty);
-    margin-top: 10px;
-    display: none;
-  }
-  .field-error.visible { display: block; }
-
-  /* ── NAV BUTTONS ── */
-  .form-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 52px;
-    padding-top: 32px;
-    border-top: 1px solid rgba(160,92,107,0.1);
-  }
-  .btn-back {
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(160,92,107,0.5);
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 12px 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: color 0.2s;
-  }
-  .btn-back:hover { color: var(--dusty); }
-  .btn-back::before { content: '←'; }
-
-  .btn-next {
-    font-family: 'Cinzel', serif;
-    font-weight: 300;
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--champagne);
-    background: var(--plum);
-    border: none;
-    cursor: pointer;
-    padding: 16px 36px;
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: background 0.25s;
-  }
-  .btn-next:hover { background: var(--plum-mid); }
-  .btn-next::after { content: '→'; font-family: 'Jost', sans-serif; font-size: 14px; }
-
-  .btn-submit {
-    font-family: 'Cinzel', serif;
-    font-weight: 300;
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--plum);
-    background: var(--gold);
-    border: none;
-    cursor: pointer;
-    padding: 16px 40px;
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: opacity 0.25s;
-  }
-  .btn-submit:hover { opacity: 0.88; }
-  .btn-submit::after { content: '✦'; font-size: 10px; }
-
-  .step-counter {
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 2px;
-    color: rgba(44,34,33,0.35);
-  }
-
-  /* ── SUCCESS STATE ── */
-  .success-screen {
-    display: none;
-    text-align: center;
-    padding: 80px 40px;
-  }
-  .success-screen.active { display: block; }
-  .success-emblem { margin: 0 auto 32px; }
-  .success-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 48px;
-    font-weight: 300;
-    color: var(--plum);
-    line-height: 1.1;
-    margin-bottom: 16px;
-  }
-  .success-sub {
-    font-size: 13px;
-    font-weight: 300;
-    color: rgba(44,34,33,0.55);
-    line-height: 1.8;
-    max-width: 420px;
-    margin: 0 auto 32px;
-  }
-  .success-brand {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--dusty);
-    opacity: 0.6;
-  }
-
-  @media (max-width: 640px) {
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
-    .hero-left { padding: 44px 28px 36px; }
-    .field-row { grid-template-columns: 1fr; }
-    .options-grid { grid-template-columns: 1fr; }
-    .options-grid.cols-3 { grid-template-columns: 1fr 1fr; }
-    .form-body { padding: 44px 24px 80px; }
-    .progress-steps { flex-wrap: wrap; }
-    .step-tab { flex: none; width: 50%; }
-  }
-</style>
+<link rel="stylesheet" href="intake.css">
 </head>
 <body>
 
 <!-- SITE NAV -->
-<div class="site-topbar">
-  <a href="index.html">Home</a>
+<nav class="site-topbar" aria-label="Main">
+  <a href="/">Home</a>
   <span class="nav-sep">·</span>
-  <a href="about.html">About</a>
+  <a href="/about">About</a>
   <span class="nav-sep">·</span>
-  <a href="intake.html" class="active">Inquire</a>
-</div>
+  <a href="/intake" class="active" aria-current="page">Inquire</a>
+</nav>
 
 <!-- HERO -->
 <header class="hero">
@@ -550,14 +30,14 @@
       </h1>
       <p class="hero-tagline">Personalized Events Company</p>
       <p class="hero-desc">Tell us about your vision and we'll get to work curating something unforgettable — just for you.</p>
-      <p style="font-family:'Jost',sans-serif;font-weight:200;font-size:10px;letter-spacing:1px;color:rgba(245,236,215,0.38);margin-top:16px;line-height:1.9;">
+      <p class="hero-contact">
         Prefer to reach out directly?<br>
-        <a href="mailto:curatedbyoccasions@gmail.com" style="color:var(--gold);opacity:0.7;text-decoration:none;letter-spacing:0.5px;">✦ &nbsp;curatedbyoccasions@gmail.com</a>
+        <a href="mailto:curatedbyoccasions@gmail.com">✦ &nbsp;curatedbyoccasions@gmail.com</a>
       </p>
     </div>
     <div class="hero-right">
       <div class="hero-emblem-wrap">
-        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <circle cx="50" cy="50" r="47" stroke="#C9A96E" stroke-width="0.7" opacity="0.45"/>
           <circle cx="50" cy="50" r="38" stroke="#C9A96E" stroke-width="0.4" opacity="0.25"/>
           <circle cx="50" cy="50" r="28" stroke="#C9A96E" stroke-width="0.3" opacity="0.13"/>
@@ -585,403 +65,422 @@
   <!-- PROGRESS -->
   <div class="progress-bar-wrap">
     <div class="progress-steps">
-      <div class="step-tab active" onclick="goToStep(1)">
+      <button type="button" class="step-tab active" data-step="1">
         <span class="step-num">I</span>
         <span class="step-name">About You</span>
-      </div>
-      <div class="step-tab" onclick="goToStep(2)">
+      </button>
+      <button type="button" class="step-tab" data-step="2">
         <span class="step-num">II</span>
         <span class="step-name">Your Event</span>
-      </div>
-      <div class="step-tab" onclick="goToStep(3)">
+      </button>
+      <button type="button" class="step-tab" data-step="3">
         <span class="step-num">III</span>
-        <span class="step-name">Vision & Style</span>
-      </div>
-      <div class="step-tab" onclick="goToStep(4)">
+        <span class="step-name">Vision &amp; Style</span>
+      </button>
+      <button type="button" class="step-tab" data-step="4">
         <span class="step-num">IV</span>
-        <span class="step-name">Services & Budget</span>
-      </div>
-      <div class="step-tab" onclick="goToStep(5)">
+        <span class="step-name">Services &amp; Budget</span>
+      </button>
+      <button type="button" class="step-tab" data-step="5">
         <span class="step-num">V</span>
         <span class="step-name">Final Details</span>
-      </div>
+      </button>
     </div>
   </div>
 </header>
 
 <!-- FORM BODY -->
-<div class="form-body">
+<main class="form-body">
 
-  <!-- STEP 1: ABOUT YOU -->
-  <div class="form-section active" id="step-1">
-    <div class="section-header">
-      <p class="section-eyebrow">Step One</p>
-      <h2 class="section-title-text">Let's start with <em>you</em></h2>
-      <p class="section-desc">We'd love to know a little about you before we dive in.</p>
+  <form id="intake-form" novalidate autocomplete="on">
+
+    <!-- Honeypot: real visitors never see or fill this -->
+    <div class="hp" aria-hidden="true">
+      <label>Leave this box unchecked <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label>
     </div>
 
-    <div class="field-row field-group">
-      <div>
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" placeholder="Your first name" required>
+    <!-- STEP 1: ABOUT YOU -->
+    <div class="form-section active" id="step-1">
+      <div class="section-header">
+        <p class="section-eyebrow">Step One</p>
+        <h2 class="section-title-text">Let's start with <em>you</em></h2>
+        <p class="section-desc">We'd love to know a little about you before we dive in.</p>
       </div>
-      <div>
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" placeholder="Your last name" required>
-      </div>
-    </div>
 
-    <div class="field-row field-group">
-      <div>
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="hello@email.com" required>
-      </div>
-      <div>
-        <label for="phone">Phone Number <span class="label-optional">optional</span></label>
-        <input type="tel" id="phone" placeholder="+1 (000) 000-0000">
-      </div>
-    </div>
-
-    <div class="field-group">
-      <label for="referral">How did you hear about us?</label>
-      <select id="referral">
-        <option value="" disabled selected>Select one</option>
-        <option>Instagram</option>
-        <option>TikTok</option>
-        <option>Word of mouth / referral</option>
-        <option>Google search</option>
-        <option>Facebook</option>
-        <option>I've worked with you before</option>
-        <option>Other</option>
-      </select>
-    </div>
-    <p class="field-error" id="step1-error">Please share your name and a valid email so we can follow up with you.</p>
-
-    <div class="form-nav">
-      <span class="step-counter">1 of 5</span>
-      <button class="btn-next" onclick="nextStep(1)">Continue</button>
-    </div>
-  </div>
-
-  <!-- STEP 2: YOUR EVENT -->
-  <div class="form-section" id="step-2">
-    <div class="section-header">
-      <p class="section-eyebrow">Step Two</p>
-      <h2 class="section-title-text">Tell us about <em>your event</em></h2>
-      <p class="section-desc">Every occasion is different — help us understand what we're creating together.</p>
-    </div>
-
-    <div class="field-group">
-      <label>What type of event are you planning?</label>
-      <div class="options-grid">
-        <div class="option-pill">
-          <input type="radio" name="event-type" id="et-birthday" value="birthday">
-          <label for="et-birthday">🎂 Intimate Birthday</label>
+      <div class="field-row field-group">
+        <div>
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="fname" placeholder="Your first name" required maxlength="60" autocomplete="given-name">
         </div>
-        <div class="option-pill">
-          <input type="radio" name="event-type" id="et-proposal" value="proposal">
-          <label for="et-proposal">💍 Proposal</label>
-        </div>
-        <div class="option-pill">
-          <input type="radio" name="event-type" id="et-anniversary" value="anniversary">
-          <label for="et-anniversary">🌹 Anniversary</label>
-        </div>
-        <div class="option-pill">
-          <input type="radio" name="event-type" id="et-other" value="other">
-          <label for="et-other">✦ Other Occasion</label>
+        <div>
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lname" placeholder="Your last name" required maxlength="60" autocomplete="family-name">
         </div>
       </div>
-    </div>
 
-    <div class="field-divider"></div>
-
-    <div class="field-group">
-      <label for="honoree">Who is this event for? <span class="label-optional">Name & relationship to you</span></label>
-      <input type="text" id="honoree" placeholder="e.g. Sarah — my best friend of 15 years">
-    </div>
-
-    <div class="field-group">
-      <label for="milestone">What milestone or occasion are we celebrating?</label>
-      <input type="text" id="milestone" placeholder="e.g. Her 30th birthday, our 5-year anniversary">
-    </div>
-
-    <div class="field-row field-group">
-      <div>
-        <label for="event-date">Preferred Event Date</label>
-        <input type="date" id="event-date">
+      <div class="field-row field-group">
+        <div>
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="hello@email.com" required maxlength="120" autocomplete="email">
+        </div>
+        <div>
+          <label for="phone">Phone Number <span class="label-optional">optional</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="+1 (000) 000-0000" maxlength="30" autocomplete="tel">
+        </div>
       </div>
-      <div>
-        <label for="backup-date">Backup Date <span class="label-optional">if flexible</span></label>
-        <input type="date" id="backup-date">
-      </div>
-    </div>
 
-    <div class="field-row field-group">
-      <div>
-        <label for="guest-count">Estimated Guest Count</label>
-        <select id="guest-count">
-          <option value="" disabled selected>Select range</option>
-          <option>Just us (1–2)</option>
-          <option>Very intimate (3–10)</option>
-          <option>Small gathering (11–25)</option>
-          <option>Larger group (26–50)</option>
-          <option>50+</option>
+      <div class="field-group">
+        <label for="referral">How did you hear about us?</label>
+        <select id="referral" name="referral">
+          <option value="" disabled selected>Select one</option>
+          <option>Instagram</option>
+          <option>TikTok</option>
+          <option>Word of mouth / referral</option>
+          <option>Google search</option>
+          <option>Facebook</option>
+          <option>I've worked with you before</option>
+          <option>Other</option>
         </select>
       </div>
-      <div>
-        <label for="location">Event City / Location</label>
-        <input type="text" id="location" placeholder="e.g. Dallas, TX">
+      <p class="field-error" id="step1-error" role="alert">Please share your name and a valid email so we can follow up with you.</p>
+
+      <div class="form-nav">
+        <span class="step-counter">1 of 5</span>
+        <button type="button" class="btn-next" data-next="1">Continue</button>
       </div>
     </div>
 
-    <div class="field-group">
-      <label>Do you have a venue in mind?</label>
-      <div class="options-grid">
-        <div class="option-pill">
-          <input type="radio" name="venue" id="v-yes" value="yes">
-          <label for="v-yes">Yes, I have one</label>
+    <!-- STEP 2: YOUR EVENT -->
+    <div class="form-section" id="step-2">
+      <div class="section-header">
+        <p class="section-eyebrow">Step Two</p>
+        <h2 class="section-title-text">Tell us about <em>your event</em></h2>
+        <p class="section-desc">Every occasion is different — help us understand what we're creating together.</p>
+      </div>
+
+      <fieldset class="field-group">
+        <legend>What type of event are you planning?</legend>
+        <div class="options-grid">
+          <div class="option-pill">
+            <input type="radio" name="event-type" id="et-birthday" value="Intimate Birthday">
+            <label for="et-birthday">🎂 Intimate Birthday</label>
+          </div>
+          <div class="option-pill">
+            <input type="radio" name="event-type" id="et-proposal" value="Proposal">
+            <label for="et-proposal">💍 Proposal</label>
+          </div>
+          <div class="option-pill">
+            <input type="radio" name="event-type" id="et-anniversary" value="Anniversary">
+            <label for="et-anniversary">🌹 Anniversary</label>
+          </div>
+          <div class="option-pill">
+            <input type="radio" name="event-type" id="et-other" value="Other Occasion">
+            <label for="et-other">✦ Other Occasion</label>
+          </div>
         </div>
-        <div class="option-pill">
-          <input type="radio" name="venue" id="v-no" value="no">
-          <label for="v-no">No, help me find one</label>
+      </fieldset>
+
+      <div class="field-divider"></div>
+
+      <div class="field-group">
+        <label for="honoree">Who is this event for? <span class="label-optional">Name &amp; relationship to you</span></label>
+        <input type="text" id="honoree" name="honoree" placeholder="e.g. Sarah — my best friend of 15 years" maxlength="150">
+      </div>
+
+      <div class="field-group">
+        <label for="milestone">What milestone or occasion are we celebrating?</label>
+        <input type="text" id="milestone" name="milestone" placeholder="e.g. Her 30th birthday, our 5-year anniversary" maxlength="150">
+      </div>
+
+      <div class="field-row field-group">
+        <div>
+          <label for="event-date">Preferred Event Date</label>
+          <input type="date" id="event-date" name="event-date">
         </div>
-        <div class="option-pill">
-          <input type="radio" name="venue" id="v-maybe" value="maybe">
-          <label for="v-maybe">I have some ideas</label>
+        <div>
+          <label for="backup-date">Backup Date <span class="label-optional">if flexible</span></label>
+          <input type="date" id="backup-date" name="backup-date">
         </div>
-        <div class="option-pill">
-          <input type="radio" name="venue" id="v-home" value="home">
-          <label for="v-home">It's at my home</label>
+      </div>
+
+      <div class="field-row field-group">
+        <div>
+          <label for="guest-count">Estimated Guest Count</label>
+          <select id="guest-count" name="guest-count">
+            <option value="" disabled selected>Select range</option>
+            <option>Just us (1–2)</option>
+            <option>Very intimate (3–10)</option>
+            <option>Small gathering (11–25)</option>
+            <option>Larger group (26–50)</option>
+            <option>50+</option>
+          </select>
         </div>
+        <div>
+          <label for="location">Event City / Location</label>
+          <input type="text" id="location" name="location" placeholder="e.g. Dallas, TX" maxlength="120">
+        </div>
+      </div>
+
+      <fieldset class="field-group">
+        <legend>Do you have a venue in mind?</legend>
+        <div class="options-grid">
+          <div class="option-pill">
+            <input type="radio" name="venue" id="v-yes" value="Yes, I have one">
+            <label for="v-yes">Yes, I have one</label>
+          </div>
+          <div class="option-pill">
+            <input type="radio" name="venue" id="v-no" value="No, help me find one">
+            <label for="v-no">No, help me find one</label>
+          </div>
+          <div class="option-pill">
+            <input type="radio" name="venue" id="v-maybe" value="I have some ideas">
+            <label for="v-maybe">I have some ideas</label>
+          </div>
+          <div class="option-pill">
+            <input type="radio" name="venue" id="v-home" value="It's at my home">
+            <label for="v-home">It's at my home</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="form-nav">
+        <button type="button" class="btn-back" data-back="2">Back</button>
+        <span class="step-counter">2 of 5</span>
+        <button type="button" class="btn-next" data-next="2">Continue</button>
       </div>
     </div>
 
-    <div class="form-nav">
-      <button class="btn-back" onclick="prevStep(2)">Back</button>
-      <span class="step-counter">2 of 5</span>
-      <button class="btn-next" onclick="nextStep(2)">Continue</button>
-    </div>
-  </div>
+    <!-- STEP 3: VISION & STYLE -->
+    <div class="form-section" id="step-3">
+      <div class="section-header">
+        <p class="section-eyebrow">Step Three</p>
+        <h2 class="section-title-text">Your <em>vision &amp; style</em></h2>
+        <p class="section-desc">This is where the magic starts. Share as much as you'd like — the more detail, the better.</p>
+      </div>
 
-  <!-- STEP 3: VISION & STYLE -->
-  <div class="form-section" id="step-3">
-    <div class="section-header">
-      <p class="section-eyebrow">Step Three</p>
-      <h2 class="section-title-text">Your <em>vision & style</em></h2>
-      <p class="section-desc">This is where the magic starts. Share as much as you'd like — the more detail, the better.</p>
-    </div>
+      <fieldset class="field-group">
+        <legend>What vibe are you going for? <span class="label-optional">select all that apply</span></legend>
+        <div class="options-grid cols-3">
+          <div class="option-pill checkbox">
+            <input type="checkbox" name="vibe" id="v-romantic" value="Romantic">
+            <label for="v-romantic">Romantic</label>
+          </div>
+          <div class="option-pill checkbox">
+            <input type="checkbox" name="vibe" id="v-elegant" value="Elegant">
+            <label for="v-elegant">Elegant</label>
+          </div>
+          <div class="option-pill checkbox">
+            <input type="checkbox" name="vibe" id="v-whimsical" value="Whimsical">
+            <label for="v-whimsical">Whimsical</label>
+          </div>
+          <div class="option-pill checkbox">
+            <input type="checkbox" name="vibe" id="v-moody" value="Moody &amp; Dramatic">
+            <label for="v-moody">Moody &amp; Dramatic</label>
+          </div>
+          <div class="option-pill checkbox">
+            <input type="checkbox" name="vibe" id="v-rustic" value="Rustic &amp; Earthy">
+            <label for="v-rustic">Rustic &amp; Earthy</label>
+          </div>
+          <div class="option-pill checkbox">
+            <input type="checkbox" name="vibe" id="v-modern" value="Clean &amp; Modern">
+            <label for="v-modern">Clean &amp; Modern</label>
+          </div>
+          <div class="option-pill checkbox">
+            <input type="checkbox" name="vibe" id="v-luxury" value="Luxury &amp; Opulent">
+            <label for="v-luxury">Luxury &amp; Opulent</label>
+          </div>
+          <div class="option-pill checkbox">
+            <input type="checkbox" name="vibe" id="v-playful" value="Fun &amp; Playful">
+            <label for="v-playful">Fun &amp; Playful</label>
+          </div>
+          <div class="option-pill checkbox">
+            <input type="checkbox" name="vibe" id="v-other-vibe" value="Other">
+            <label for="v-other-vibe">Other</label>
+          </div>
+        </div>
+      </fieldset>
 
-    <div class="field-group">
-      <label>What vibe are you going for? <span class="label-optional">select all that apply</span></label>
-      <div class="options-grid cols-3">
-        <div class="option-pill checkbox">
-          <input type="checkbox" name="vibe" id="v-romantic" value="Romantic">
-          <label for="v-romantic">Romantic</label>
+      <div class="field-divider"></div>
+
+      <div class="field-group">
+        <label for="palette">Do you have a color palette in mind? <span class="label-optional">optional</span></label>
+        <input type="text" id="palette" name="palette" placeholder="e.g. Blush, gold &amp; sage — or I'm open to suggestions" maxlength="200">
+      </div>
+
+      <div class="field-group">
+        <label for="inspiration">Describe your dream event in your own words</label>
+        <textarea id="inspiration" name="inspiration" maxlength="3000" placeholder="Paint us a picture — what does it look, feel, and smell like? What do you want the guest of honour to feel when they walk in?"></textarea>
+      </div>
+
+      <div class="field-group">
+        <label for="inspo-links">Pinterest board or inspiration links <span class="label-optional">optional</span></label>
+        <input type="text" id="inspo-links" name="inspo-links" placeholder="Paste any links here" maxlength="500">
+      </div>
+
+      <div class="field-row field-group">
+        <div>
+          <label for="must-haves">Must-haves for this event</label>
+          <textarea id="must-haves" name="must-haves" class="short" maxlength="1500" placeholder="e.g. Floral arch, custom neon sign, live music..."></textarea>
         </div>
-        <div class="option-pill checkbox">
-          <input type="checkbox" name="vibe" id="v-elegant" value="Elegant">
-          <label for="v-elegant">Elegant</label>
+        <div>
+          <label for="avoid">Things to avoid</label>
+          <textarea id="avoid" name="avoid" class="short" maxlength="1500" placeholder="e.g. No balloons, she hates surprises, avoid red..."></textarea>
         </div>
-        <div class="option-pill checkbox">
-          <input type="checkbox" name="vibe" id="v-whimsical" value="Whimsical">
-          <label for="v-whimsical">Whimsical</label>
-        </div>
-        <div class="option-pill checkbox">
-          <input type="checkbox" name="vibe" id="v-moody" value="Moody & Dramatic">
-          <label for="v-moody">Moody & Dramatic</label>
-        </div>
-        <div class="option-pill checkbox">
-          <input type="checkbox" name="vibe" id="v-rustic" value="Rustic & Earthy">
-          <label for="v-rustic">Rustic & Earthy</label>
-        </div>
-        <div class="option-pill checkbox">
-          <input type="checkbox" name="vibe" id="v-modern" value="Clean & Modern">
-          <label for="v-modern">Clean & Modern</label>
-        </div>
-        <div class="option-pill checkbox">
-          <input type="checkbox" name="vibe" id="v-luxury" value="Luxury & Opulent">
-          <label for="v-luxury">Luxury & Opulent</label>
-        </div>
-        <div class="option-pill checkbox">
-          <input type="checkbox" name="vibe" id="v-playful" value="Fun & Playful">
-          <label for="v-playful">Fun & Playful</label>
-        </div>
-        <div class="option-pill checkbox">
-          <input type="checkbox" name="vibe" id="v-other-vibe" value="Other">
-          <label for="v-other-vibe">Other</label>
-        </div>
+      </div>
+
+      <div class="form-nav">
+        <button type="button" class="btn-back" data-back="3">Back</button>
+        <span class="step-counter">3 of 5</span>
+        <button type="button" class="btn-next" data-next="3">Continue</button>
       </div>
     </div>
 
-    <div class="field-divider"></div>
-
-    <div class="field-group">
-      <label for="palette">Do you have a color palette in mind? <span class="label-optional">optional</span></label>
-      <input type="text" id="palette" placeholder="e.g. Blush, gold & sage — or I'm open to suggestions">
-    </div>
-
-    <div class="field-group">
-      <label for="inspiration">Describe your dream event in your own words</label>
-      <textarea id="inspiration" placeholder="Paint us a picture — what does it look, feel, and smell like? What do you want the guest of honour to feel when they walk in?"></textarea>
-    </div>
-
-    <div class="field-group">
-      <label for="inspo-links">Pinterest board or inspiration links <span class="label-optional">optional</span></label>
-      <input type="text" id="inspo-links" placeholder="Paste any links here">
-    </div>
-
-    <div class="field-row field-group">
-      <div>
-        <label for="must-haves">Must-haves for this event</label>
-        <textarea id="must-haves" style="min-height:80px;" placeholder="e.g. Floral arch, custom neon sign, live music..."></textarea>
+    <!-- STEP 4: SERVICES & BUDGET -->
+    <div class="form-section" id="step-4">
+      <div class="section-header">
+        <p class="section-eyebrow">Step Four</p>
+        <h2 class="section-title-text">Services &amp; <em>budget</em></h2>
+        <p class="section-desc">Choose the level of support you're looking for — no packages, just what fits your occasion.</p>
       </div>
-      <div>
-        <label for="avoid">Things to avoid</label>
-        <textarea id="avoid" style="min-height:80px;" placeholder="e.g. No balloons, she hates surprises, avoid red..."></textarea>
-      </div>
-    </div>
 
-    <div class="form-nav">
-      <button class="btn-back" onclick="prevStep(3)">Back</button>
-      <span class="step-counter">3 of 5</span>
-      <button class="btn-next" onclick="nextStep(3)">Continue</button>
-    </div>
-  </div>
+      <fieldset class="field-group">
+        <legend>Which service(s) are you interested in? <span class="label-optional">select all that apply</span></legend>
+        <div class="options-grid">
+          <div class="option-pill checkbox">
+            <input type="checkbox" name="services" id="s-architect" value="Event Architect">
+            <label for="s-architect">✦ Event Architect</label>
+          </div>
+          <div class="option-pill checkbox">
+            <input type="checkbox" name="services" id="s-decor" value="Event Design &amp; Décor">
+            <label for="s-decor">🌸 Event Design &amp; Décor</label>
+          </div>
+          <div class="option-pill checkbox">
+            <input type="checkbox" name="services" id="s-concierge" value="Event Concierge">
+            <label for="s-concierge">🤍 Event Concierge</label>
+          </div>
+          <div class="option-pill checkbox">
+            <input type="checkbox" name="services" id="s-facilitator" value="Event Day Facilitator">
+            <label for="s-facilitator">👑 Event Day Facilitator</label>
+          </div>
+          <div class="option-pill checkbox">
+            <input type="checkbox" name="services" id="s-photo" value="Photoshoot Assistance">
+            <label for="s-photo">📸 Photoshoot Assistance</label>
+          </div>
+        </div>
+        <p class="field-error" id="service-error" role="alert">Please select at least one service.</p>
+      </fieldset>
 
-  <!-- STEP 4: SERVICES & BUDGET -->
-  <div class="form-section" id="step-4">
-    <div class="section-header">
-      <p class="section-eyebrow">Step Four</p>
-      <h2 class="section-title-text">Services & <em>budget</em></h2>
-      <p class="section-desc">Choose the level of support you're looking for — no packages, just what fits your occasion.</p>
-    </div>
+      <div class="field-divider"></div>
 
-    <div class="field-group">
-      <label>Which service(s) are you interested in? <span class="label-optional">select all that apply</span></label>
-      <div class="options-grid">
-        <div class="option-pill checkbox">
-          <input type="checkbox" name="services" id="s-architect" value="Event Architect">
-          <label for="s-architect">✦ Event Architect</label>
+      <fieldset class="field-group">
+        <legend>What is your estimated budget range for this event?</legend>
+        <div class="budget-options options-grid">
+          <div class="option-pill">
+            <input type="radio" name="budget" id="b1" value="$1,000 – $2,000">
+            <label for="b1">$1,000 – $2,000</label>
+          </div>
+          <div class="option-pill">
+            <input type="radio" name="budget" id="b2" value="$2,000 – $3,000">
+            <label for="b2">$2,000 – $3,000</label>
+          </div>
+          <div class="option-pill">
+            <input type="radio" name="budget" id="b3" value="$3,000 – $5,000">
+            <label for="b3">$3,000 – $5,000</label>
+          </div>
+          <div class="option-pill">
+            <input type="radio" name="budget" id="b4" value="$5,000 – $10,000">
+            <label for="b4">$5,000 – $10,000</label>
+          </div>
+          <div class="option-pill">
+            <input type="radio" name="budget" id="b5" value="$10,000+">
+            <label for="b5">$10,000+</label>
+          </div>
+          <div class="option-pill">
+            <input type="radio" name="budget" id="b6" value="Flexible / Let's talk">
+            <label for="b6">Flexible / Let's talk</label>
+          </div>
         </div>
-        <div class="option-pill checkbox">
-          <input type="checkbox" name="services" id="s-decor" value="Event Design & Décor">
-          <label for="s-decor">🌸 Event Design &amp; Décor</label>
-        </div>
-        <div class="option-pill checkbox">
-          <input type="checkbox" name="services" id="s-concierge" value="Event Concierge">
-          <label for="s-concierge">🤍 Event Concierge</label>
-        </div>
-        <div class="option-pill checkbox">
-          <input type="checkbox" name="services" id="s-facilitator" value="Event Day Facilitator">
-          <label for="s-facilitator">👑 Event Day Facilitator</label>
-        </div>
-        <div class="option-pill checkbox">
-          <input type="checkbox" name="services" id="s-photo" value="Photoshoot Assistance">
-          <label for="s-photo">📸 Photoshoot Assistance</label>
-        </div>
-      </div>
-      <p class="field-error" id="service-error">Please select at least one service.</p>
-    </div>
+      </fieldset>
 
-    <div class="field-divider"></div>
-
-    <div class="field-group">
-      <label>What is your estimated budget range for this event?</label>
-      <div class="budget-options options-grid">
-        <div class="option-pill">
-          <input type="radio" name="budget" id="b1" value="$1,000 – $2,000">
-          <label for="b1">$1,000 – $2,000</label>
-        </div>
-        <div class="option-pill">
-          <input type="radio" name="budget" id="b2" value="$2,000 – $3,000">
-          <label for="b2">$2,000 – $3,000</label>
-        </div>
-        <div class="option-pill">
-          <input type="radio" name="budget" id="b3" value="$3,000 – $5,000">
-          <label for="b3">$3,000 – $5,000</label>
-        </div>
-        <div class="option-pill">
-          <input type="radio" name="budget" id="b4" value="$5,000 – $10,000">
-          <label for="b4">$5,000 – $10,000</label>
-        </div>
-        <div class="option-pill">
-          <input type="radio" name="budget" id="b5" value="$10,000+">
-          <label for="b5">$10,000+</label>
-        </div>
-        <div class="option-pill">
-          <input type="radio" name="budget" id="b6" value="Flexible / Let's talk">
-          <label for="b6">Flexible / Let's talk</label>
-        </div>
+      <div class="form-nav">
+        <button type="button" class="btn-back" data-back="4">Back</button>
+        <span class="step-counter">4 of 5</span>
+        <button type="button" class="btn-next" data-next="4">Continue</button>
       </div>
     </div>
 
-    <div class="form-nav">
-      <button class="btn-back" onclick="prevStep(4)">Back</button>
-      <span class="step-counter">4 of 5</span>
-      <button class="btn-next" onclick="nextStep(4)">Continue</button>
-    </div>
-  </div>
+    <!-- STEP 5: FINAL DETAILS -->
+    <div class="form-section" id="step-5">
+      <div class="section-header">
+        <p class="section-eyebrow">Step Five</p>
+        <h2 class="section-title-text">The <em>final touches</em></h2>
+        <p class="section-desc">A few last details that help us make this feel completely personal.</p>
+      </div>
 
-  <!-- STEP 5: FINAL DETAILS -->
-  <div class="form-section" id="step-5">
-    <div class="section-header">
-      <p class="section-eyebrow">Step Five</p>
-      <h2 class="section-title-text">The <em>final touches</em></h2>
-      <p class="section-desc">A few last details that help us make this feel completely personal.</p>
-    </div>
+      <div class="field-group">
+        <label for="honoree-details">Is there anything about the guest of honour we should know to make this extra personal?</label>
+        <textarea id="honoree-details" name="honoree-details" maxlength="3000" placeholder="Their favourite flowers, colours, a meaningful song, a running joke, something they've always dreamed of — anything goes here."></textarea>
+      </div>
 
-    <div class="field-group">
-      <label for="honoree-details">Is there anything about the guest of honour we should know to make this extra personal?</label>
-      <textarea id="honoree-details" placeholder="Their favourite flowers, colours, a meaningful song, a running joke, something they've always dreamed of — anything goes here."></textarea>
-    </div>
+      <div class="field-divider"></div>
 
-    <div class="field-divider"></div>
-
-    <div class="field-group">
-      <label>Is this event a surprise?</label>
-      <div class="options-grid">
-        <div class="option-pill">
-          <input type="radio" name="surprise" id="sur-yes" value="Yes — they have no idea">
-          <label for="sur-yes">Yes — they have no idea</label>
+      <fieldset class="field-group">
+        <legend>Is this event a surprise?</legend>
+        <div class="options-grid">
+          <div class="option-pill">
+            <input type="radio" name="surprise" id="sur-yes" value="Yes — they have no idea">
+            <label for="sur-yes">Yes — they have no idea</label>
+          </div>
+          <div class="option-pill">
+            <input type="radio" name="surprise" id="sur-no" value="No — they know about it">
+            <label for="sur-no">No — they know about it</label>
+          </div>
+          <div class="option-pill">
+            <input type="radio" name="surprise" id="sur-partial" value="Partially — they know something is happening">
+            <label for="sur-partial">Partially — they know something is happening</label>
+          </div>
         </div>
-        <div class="option-pill">
-          <input type="radio" name="surprise" id="sur-no" value="No — they know about it">
-          <label for="sur-no">No — they know about it</label>
-        </div>
-        <div class="option-pill">
-          <input type="radio" name="surprise" id="sur-partial" value="Partially — they know something is happening">
-          <label for="sur-partial">Partially — they know something is happening</label>
-        </div>
+      </fieldset>
+
+      <div class="field-group">
+        <label for="timeline">How soon are you looking to confirm and begin planning?</label>
+        <select id="timeline" name="timeline">
+          <option value="" disabled selected>Select one</option>
+          <option>ASAP — the date is very soon</option>
+          <option>Within the next 2 weeks</option>
+          <option>Within the next month</option>
+          <option>I'm planning ahead (1–3 months out)</option>
+          <option>Just exploring for now</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label for="questions">Any questions for us before we get started? <span class="label-optional">optional</span></label>
+        <textarea id="questions" name="questions" class="short" maxlength="1500" placeholder="We'll answer everything in your consultation call."></textarea>
+      </div>
+
+      <p class="consent-note">
+        We use the details you share only to respond to your inquiry and plan your event. We don't sell or share them.
+      </p>
+
+      <div id="form-status" class="form-status" role="status" aria-live="polite" hidden></div>
+      <p id="form-error" class="form-status" role="alert" hidden>
+        We couldn't send your inquiry just now. Please try again in a moment, or email us directly at
+        <a href="mailto:curatedbyoccasions@gmail.com">curatedbyoccasions@gmail.com</a>.
+      </p>
+
+      <div class="form-nav">
+        <button type="button" class="btn-back" data-back="5">Back</button>
+        <span class="step-counter">5 of 5</span>
+        <button type="submit" class="btn-submit" id="submit-btn">Send Inquiry</button>
       </div>
     </div>
 
-    <div class="field-group">
-      <label for="timeline">How soon are you looking to confirm and begin planning?</label>
-      <select id="timeline">
-        <option value="" disabled selected>Select one</option>
-        <option>ASAP — the date is very soon</option>
-        <option>Within the next 2 weeks</option>
-        <option>Within the next month</option>
-        <option>I'm planning ahead (1–3 months out)</option>
-        <option>Just exploring for now</option>
-      </select>
-    </div>
+  </form>
 
-    <div class="field-group">
-      <label for="questions">Any questions for us before we get started? <span class="label-optional">optional</span></label>
-      <textarea id="questions" style="min-height:80px;" placeholder="We'll answer everything in your consultation call."></textarea>
-    </div>
-
-    <div class="form-nav">
-      <button class="btn-back" onclick="prevStep(5)">Back</button>
-      <span class="step-counter">5 of 5</span>
-      <button class="btn-submit" onclick="submitForm()">Send Inquiry</button>
-    </div>
-  </div>
-
-  <!-- SUCCESS SCREEN -->
+  <!-- SUCCESS SCREEN (only shown after the server confirms delivery) -->
   <div class="success-screen" id="success">
-    <svg class="success-emblem" width="72" height="72" viewBox="0 0 100 100" fill="none">
+    <svg class="success-emblem" width="72" height="72" viewBox="0 0 100 100" fill="none" aria-hidden="true">
       <circle cx="50" cy="50" r="47" stroke="#C9A96E" stroke-width="0.7" opacity="0.45"/>
       <circle cx="50" cy="50" r="38" stroke="#C9A96E" stroke-width="0.4" opacity="0.25"/>
       <path d="M50 8 C54 24 54 24 50 40 C46 24 46 24 50 8Z" fill="#C9A96E" opacity="0.82"/>
@@ -996,130 +495,16 @@
       <circle cx="50" cy="50" r="3.2" fill="#FAF6F0"/>
     </svg>
     <h2 class="success-title">We've received<br>your inquiry</h2>
-    <p class="success-sub">Thank you for reaching out to Curated by Occasions. Your email app should have opened with your answers ready to send — just hit send from there and we'll be in touch within 48 hours to schedule your complimentary consultation call.</p>
-    <div style="border-top:1px solid rgba(160,92,107,0.15);padding-top:22px;margin-top:4px;">
-      <p style="font-family:'Jost',sans-serif;font-weight:300;font-size:11px;color:rgba(44,34,33,0.45);letter-spacing:1px;margin-bottom:10px;">You can also reach us directly at</p>
-      <a href="mailto:curatedbyoccasions@gmail.com" style="font-family:'Cinzel',serif;font-weight:300;font-size:12px;letter-spacing:2px;color:var(--dusty);text-decoration:none;display:inline-flex;align-items:center;gap:8px;opacity:0.8;">
-        ✦ &nbsp;curatedbyoccasions@gmail.com
-      </a>
+    <p class="success-sub">Thank you for reaching out to Curated by Occasions. We'll be in touch within 48 hours to schedule your complimentary consultation call.</p>
+    <div class="success-contact">
+      <p>You can also reach us directly at</p>
+      <a href="mailto:curatedbyoccasions@gmail.com">✦ &nbsp;curatedbyoccasions@gmail.com</a>
     </div>
-    <p class="success-brand" style="margin-top:28px;">Curated by Occasions ✦</p>
+    <p class="success-brand spaced">Curated by Occasions ✦</p>
   </div>
 
-</div><!-- end form-body -->
+</main>
 
-<script>
-  let currentStep = 1;
-  const totalSteps = 5;
-
-  function goToStep(n) {
-    document.getElementById('step-' + currentStep).classList.remove('active');
-    document.querySelectorAll('.step-tab')[currentStep - 1].classList.remove('active');
-    currentStep = n;
-    document.getElementById('step-' + currentStep).classList.add('active');
-    document.querySelectorAll('.step-tab')[currentStep - 1].classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function validateStep1() {
-    var fname = document.getElementById('fname');
-    var lname = document.getElementById('lname');
-    var email = document.getElementById('email');
-    var error = document.getElementById('step1-error');
-    var valid = fname.value.trim() && lname.value.trim() && email.checkValidity() && email.value.trim();
-    error.classList.toggle('visible', !valid);
-    return valid;
-  }
-
-  function validateStep4() {
-    var checked = document.querySelectorAll('input[name="services"]:checked').length > 0;
-    document.getElementById('service-error').classList.toggle('visible', !checked);
-    return checked;
-  }
-
-  function nextStep(from) {
-    if (from === 1 && !validateStep1()) { return; }
-    if (from === 4 && !validateStep4()) { return; }
-    if (from < totalSteps) {
-      document.querySelectorAll('.step-tab')[from - 1].classList.remove('active');
-      document.querySelectorAll('.step-tab')[from - 1].classList.add('completed');
-      goToStep(from + 1);
-    }
-  }
-
-  function prevStep(from) {
-    if (from > 1) goToStep(from - 1);
-  }
-
-  function val(id) {
-    var el = document.getElementById(id);
-    return el ? el.value.trim() : '';
-  }
-
-  function checkedValues(name) {
-    return Array.prototype.slice
-      .call(document.querySelectorAll('input[name="' + name + '"]:checked'))
-      .map(function (el) { return el.value; });
-  }
-
-  function submitForm() {
-    if (!validateStep1()) { goToStep(1); return; }
-    if (!validateStep4()) { goToStep(4); return; }
-
-    var services = checkedValues('services');
-    var vibes = checkedValues('vibe');
-
-    var lines = [
-      'New event inquiry from ' + val('fname') + ' ' + val('lname'),
-      '',
-      '— About you —',
-      'Name: ' + val('fname') + ' ' + val('lname'),
-      'Email: ' + val('email'),
-      'Phone: ' + (val('phone') || '—'),
-      'How they heard about us: ' + (val('referral') || '—'),
-      '',
-      '— The event —',
-      'Event type: ' + (checkedValues('event-type')[0] || '—'),
-      'Who it\'s for: ' + (val('honoree') || '—'),
-      'Milestone: ' + (val('milestone') || '—'),
-      'Preferred date: ' + (val('event-date') || '—'),
-      'Backup date: ' + (val('backup-date') || '—'),
-      'Guest count: ' + (val('guest-count') || '—'),
-      'Location: ' + (val('location') || '—'),
-      'Venue in mind: ' + (checkedValues('venue')[0] || '—'),
-      '',
-      '— Vision & style —',
-      'Vibe: ' + (vibes.length ? vibes.join(', ') : '—'),
-      'Colour palette: ' + (val('palette') || '—'),
-      'Dream event, in their words: ' + (val('inspiration') || '—'),
-      'Inspiration links: ' + (val('inspo-links') || '—'),
-      'Must-haves: ' + (val('must-haves') || '—'),
-      'Things to avoid: ' + (val('avoid') || '—'),
-      '',
-      '— Services & budget —',
-      'Services interested in: ' + (services.length ? services.join(', ') : '—'),
-      'Estimated budget: ' + (checkedValues('budget')[0] || '—'),
-      '',
-      '— Final details —',
-      'About the guest of honour: ' + (val('honoree-details') || '—'),
-      'Surprise?: ' + (checkedValues('surprise')[0] || '—'),
-      'Timeline to begin planning: ' + (val('timeline') || '—'),
-      'Questions for us: ' + (val('questions') || '—')
-    ];
-
-    var subject = encodeURIComponent('New Event Inquiry — ' + val('fname') + ' ' + val('lname'));
-    var body = encodeURIComponent(lines.join('\n'));
-    var mailtoLink = 'mailto:curatedbyoccasions@gmail.com?subject=' + subject + '&body=' + body;
-
-    document.getElementById('step-5').classList.remove('active');
-    document.querySelectorAll('.step-tab')[4].classList.remove('active');
-    document.querySelectorAll('.step-tab')[4].classList.add('completed');
-    document.getElementById('success').classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    window.location.href = mailtoLink;
-  }
-</script>
-
+<script src="intake.js"></script>
 </body>
 </html>
