@@ -4,9 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — Curated by Occasions</title>
+<meta name="description" content="Meet Tayo Matey, Lead Event Architect at Curated by Occasions, a personalized events company creating intimate event designs.">
+<link rel="canonical" href="https://curatedbyoccasions.com/about">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&family=Cinzel:wght@300;400&display=swap" rel="stylesheet">
+<noscript><style>.service-card{opacity:1;transform:none}</style></noscript>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&family=Cinzel:wght@300;400&display=swap');
-
+  
   :root{
     --plum:#3D1C2E; --plum-mid:#5a2d46; --champagne:#F5ECD7; --blush:#E8C4B8;
     --mauve:#C4879A; --dusty:#A05C6B; --gold:#C9A96E; --sage:#9BAF9B;
@@ -182,19 +187,20 @@
     .site-cta { top: 100px; right: 16px; font-size: 8px; padding: 10px 16px; letter-spacing: 2px; }
     .site-nav { top: 100px; left: 16px; padding: 10px 14px; gap: 10px; font-size: 8px; letter-spacing: 2px; }
   }
+  .contact-link { text-decoration: none; color: inherit; }
 </style>
 </head>
 <body>
 
-<nav class="site-nav">
-  <a href="index.html">Home</a>
+<nav class="site-nav" aria-label="Main">
+  <a href="/">Home</a>
   <span class="nav-sep">·</span>
-  <a href="about.html" class="active">About</a>
+  <a href="/about" class="active" aria-current="page">About</a>
   <span class="nav-sep">·</span>
-  <a href="intake.html">Inquire</a>
+  <a href="/intake">Inquire</a>
 </nav>
 
-<a class="site-cta" href="intake.html">Submit an inquiry</a>
+<a class="site-cta" href="/intake">Submit an inquiry</a>
 
 <!-- ═══ HERO ═══ -->
 <section class="cover" id="hero">
@@ -208,7 +214,7 @@
     <span class="cover-ornament">✦ · ✦ · ✦</span>
     <h1 class="cover-headline">The heart behind<br>every detail.</h1>
     <p class="cover-sub">Personalized Events Company &nbsp;·&nbsp; Intimate Event Designs</p>
-    <button class="cover-scroll" onclick="document.getElementById('approach').scrollIntoView({behavior:'smooth'})">Meet your curator</button>
+    <button type="button" class="cover-scroll" data-scroll="approach">Meet your curator</button>
   </div>
 </section>
 
@@ -252,7 +258,7 @@
 
   <div class="service-card card-1">
     <div class="service-left">
-      <img class="curator-photo" src="assets/tayo-matey.jpg" alt="Tayo Matey, Lead Event Architect at Curated by Occasions">
+      <img class="curator-photo" decoding="async" src="assets/tayo-matey.jpg" alt="Tayo Matey, Lead Event Architect at Curated by Occasions">
       <div class="curator-photo-scrim"></div>
       <div class="service-title-wrap">
         <p class="service-category">Lead Event Architect</p>
@@ -292,28 +298,16 @@
     <span class="back-ornament">✦ · ✦ · ✦</span>
     <h2 class="back-title">Let's start planning<br>your moment.</h2>
     <p class="back-body">Every occasion deserves to feel extraordinary. Whether you know exactly what you want or you're just starting to dream — we'd love to hear from you.</p>
-    <a class="cta-button" href="intake.html">Submit an inquiry</a>
+    <a class="cta-button" href="/intake">Submit an inquiry</a>
     <div class="back-contact">
-      <a href="intake.html" class="contact-item" style="text-decoration:none;color:inherit;">Submit an inquiry via our website</a>
+      <a href="/intake" class="contact-item contact-link">Submit an inquiry via our website</a>
       <p class="contact-item">DM us on Instagram &nbsp;@curatedbyoccasions</p>
-      <a href="mailto:curatedbyoccasions@gmail.com" class="contact-item" style="text-decoration:none;color:inherit;">curatedbyoccasions@gmail.com</a>
+      <a href="mailto:curatedbyoccasions@gmail.com" class="contact-item contact-link">curatedbyoccasions@gmail.com</a>
     </div>
     <p class="back-brand">Curated by Occasions ✦</p>
   </div>
 </section>
 
-<script>
-  var cards = document.querySelectorAll('.service-card');
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  cards.forEach(function(c) { observer.observe(c); });
-</script>
-
+<script src="site.js" defer></script>
 </body>
 </html>
